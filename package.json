@@ -20,6 +20,8 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "prettier": "^3.8.4",
+    "sass": "^1.100.0",
     "typescript": "^5"
   }
 }
