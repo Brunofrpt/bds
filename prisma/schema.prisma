@@ -11,3 +11,11 @@ generator client {
 datasource db {
   provider = "mysql"
 }
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
