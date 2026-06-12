@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio - Bruno Da Silva
 
-## Getting Started
+Portfolio personnel developpe avec Next.js.
 
-First, run the development server:
+## Prerequis
+
+- Node.js 20.9 ou superieur
+- npm
+- MySQL 8
+
+## Installation
+
+Installer les dependances :
+
+```bash
+npm install
+```
+
+Lancer le serveur de developpement :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir ensuite :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuration locale
 
-## Learn More
+Le projet utilise une base de donnees MySQL locale.
 
-To learn more about Next.js, take a look at the following resources:
+Creer la base de donnees :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sql
+CREATE DATABASE portfolio_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Creer un utilisateur MySQL dedie :
 
-## Deploy on Vercel
+```sql
+CREATE USER 'portfolio_user'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON portfolio_db.* TO 'portfolio_user'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Creer un fichier `.env.local` a la racine du projet en suivant l'exemple fourni dans `.env.example` :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+DATABASE_URL="mysql://portfolio_user:your_password@localhost:3306/portfolio_db"
+```
+
+Le fichier `.env.local` contient des informations sensibles et ne doit pas etre versionne.
+
+## Scripts utiles
+
+```bash
+npm run dev
+npm run build
+npm run lint
+npx prettier . --check
+```
