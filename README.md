@@ -56,6 +56,34 @@ DATABASE_URL="mysql://portfolio_user:your_password@localhost:3306/portfolio_db"
 
 Le fichier `.env.local` contient des informations sensibles et ne doit pas etre versionne.
 
+## Prisma
+
+Le projet utilise Prisma pour gerer le schema de base de donnees et generer un client TypeScript.
+
+Le schema Prisma se trouve dans :
+
+```text
+prisma/schema.prisma
+```
+
+Le client Prisma est genere dans :
+
+```text
+src/generated/prisma
+```
+
+Generer le client Prisma :
+
+```bash
+npx prisma generate
+```
+
+Verifier le schema Prisma :
+
+```bash
+npx prisma validate
+```
+
 ## Scripts utiles
 
 ```bash
@@ -63,4 +91,6 @@ npm run dev
 npm run build
 npm run lint
 npx prettier . --check
+npx prisma validate
+npx prisma generate
 ```
