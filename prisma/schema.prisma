@@ -22,12 +22,13 @@ model Admin {
 }
 
 model Technology {
-  id        String   @id @default(cuid()) @db.VarChar(191)
-  name      String   @unique @db.VarChar(100)
-  slug      String   @unique @db.VarChar(120)
-  logoUrl   String?  @db.VarChar(500)
-  createdAt DateTime @default(now()) @db.DateTime(3)
-  updatedAt DateTime @updatedAt @db.DateTime(3)
+  id       String              @id @default(cuid()) @db.VarChar(191)
+  name     String              @unique @db.VarChar(100)
+  slug     String              @unique @db.VarChar(120)
+  logoUrl  String?             @db.VarChar(500)
+  createdAt DateTime           @default(now()) @db.DateTime(3)
+  updatedAt DateTime           @updatedAt @db.DateTime(3)
+  projects ProjectTechnology[]
 }
 
 model Project {
@@ -58,10 +59,23 @@ model Project {
   createdAt                 DateTime  @default(now()) @db.DateTime(3)
   updatedAt                 DateTime  @updatedAt @db.DateTime(3)
   images                    ProjectImage[]
+  technologies              ProjectTechnology[]
 
   @@index([isPublished])
   @@index([publishedAt])
   @@index([createdAt])
+}
+
+model ProjectTechnology {
+  projectId    String     @db.VarChar(191)
+  technologyId String     @db.VarChar(191)
+  createdAt    DateTime   @default(now()) @db.DateTime(3)
+  project      Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technologyId])
+  @@index([projectId])
+  @@index([technologyId])
 }
 
 model ProjectImage {
