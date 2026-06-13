@@ -57,4 +57,19 @@ model Project {
   publishedAt               DateTime? @db.DateTime(3)
   createdAt                 DateTime  @default(now()) @db.DateTime(3)
   updatedAt                 DateTime  @updatedAt @db.DateTime(3)
+  images                    ProjectImage[]
+}
+
+model ProjectImage {
+  id           String   @id @default(cuid()) @db.VarChar(191)
+  projectId    String   @db.VarChar(191)
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl     String   @db.VarChar(500)
+  altText      String   @db.VarChar(255)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now()) @db.DateTime(3)
+  updatedAt    DateTime @updatedAt @db.DateTime(3)
+
+  @@index([projectId])
+  @@index([projectId, displayOrder])
 }
