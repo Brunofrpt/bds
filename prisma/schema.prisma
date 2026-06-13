@@ -13,11 +13,12 @@ datasource db {
 }
 
 model Admin {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id           String    @id @default(cuid()) @db.VarChar(191)
+  email        String    @unique @db.VarChar(191)
+  passwordHash String    @db.VarChar(255)
+  createdAt    DateTime  @default(now()) @db.DateTime(3)
+  updatedAt    DateTime  @updatedAt @db.DateTime(3)
+  projects     Project[]
 }
 
 model Technology {
@@ -27,4 +28,33 @@ model Technology {
   logoUrl   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id                        String    @id @default(cuid()) @db.VarChar(191)
+  adminId                   String?   @db.VarChar(191)
+  admin                     Admin?    @relation(fields: [adminId], references: [id])
+  title                     String    @db.VarChar(255)
+  slug                      String    @unique @db.VarChar(255)
+  year                      Int?      @db.SmallInt
+  shortDescription          String    @db.Text
+  context                   String    @db.LongText
+  objectives                Json
+  technicalStackDescription String    @db.LongText
+  developedSkills           Json
+  results                   Json
+  improvements              Json?
+  seoTitle                  String    @db.VarChar(255)
+  seoDescription            String    @db.VarChar(500)
+  canonicalUrl              String?   @db.VarChar(500)
+  ogImageUrl                String?   @db.VarChar(500)
+  githubUrl                 String?   @db.VarChar(500)
+  demoUrl                   String?   @db.VarChar(500)
+  videoUrl                  String?   @db.VarChar(500)
+  heroImageUrl              String    @db.VarChar(500)
+  heroImageAlt              String    @db.VarChar(255)
+  isPublished               Boolean   @default(false)
+  publishedAt               DateTime? @db.DateTime(3)
+  createdAt                 DateTime  @default(now()) @db.DateTime(3)
+  updatedAt                 DateTime  @updatedAt @db.DateTime(3)
 }
