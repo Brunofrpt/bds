@@ -22,18 +22,18 @@ model Admin {
 }
 
 model Technology {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  slug      String   @unique
-  logoUrl   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid()) @db.VarChar(191)
+  name      String   @unique @db.VarChar(100)
+  slug      String   @unique @db.VarChar(120)
+  logoUrl   String?  @db.VarChar(500)
+  createdAt DateTime @default(now()) @db.DateTime(3)
+  updatedAt DateTime @updatedAt @db.DateTime(3)
 }
 
 model Project {
   id                        String    @id @default(cuid()) @db.VarChar(191)
   adminId                   String?   @db.VarChar(191)
-  admin                     Admin?    @relation(fields: [adminId], references: [id])
+  admin                     Admin?    @relation(fields: [adminId], references: [id], onDelete: SetNull)
   title                     String    @db.VarChar(255)
   slug                      String    @unique @db.VarChar(255)
   year                      Int?      @db.SmallInt
@@ -58,6 +58,10 @@ model Project {
   createdAt                 DateTime  @default(now()) @db.DateTime(3)
   updatedAt                 DateTime  @updatedAt @db.DateTime(3)
   images                    ProjectImage[]
+
+  @@index([isPublished])
+  @@index([publishedAt])
+  @@index([createdAt])
 }
 
 model ProjectImage {
