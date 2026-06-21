@@ -1,4 +1,5 @@
 import { Container } from "./container";
+import { Footer } from "./footer";
 import { Header } from "./header";
 
 type PublicLayoutProps = {
@@ -14,11 +15,7 @@ export function PublicLayout({ children }: PublicLayoutProps) {
         <Container>{children}</Container>
       </main>
 
-      <footer className="public-layout__footer">
-        <Container>
-          <p>Portfolio</p>
-        </Container>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,1 +1,40 @@
 // Public footer styles.
+@use "../abstracts/variables" as variables;
+@use "../abstracts/mixins" as mixins;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+  border-top: variables.$border-primary;
+  font-family: var(--font-jetbrains-mono);
+  font-size: 10px;
+  color: variables.$primary-color-text;
+  padding-block: variables.$spacing-md;
+
+  a {
+    transition: color 300ms ease;
+
+    &:hover {
+      color: variables.$secondary-color-text;
+    }
+  }
+
+  &__bar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__links {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__link-private {
+  }
+
+  &__copyright {
+    border-top: variables.$border-primary;
+    padding-block: variables.$spacing-md;
+  }
+}
