@@ -1,1 +1,15 @@
 // Global design tokens.
+$primary-color-text: #070707;
+$secondary-color-text: #00974d;
+$third-color-text: #ffffff;
+$stroke-color-1: #e2e2e2;
+
+$border-primary: 1px solid $stroke-color-1;
+
+$spacing-md: 20px;
+
+$radius-pill: 36px;
+$radius-card: 18px;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;

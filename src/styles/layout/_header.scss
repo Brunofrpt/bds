@@ -1,1 +1,202 @@
 // Public header styles.
+@use "../abstracts/variables" as variables;
+@use "../abstracts/mixins" as mixins;
+
+.header {
+  border-bottom: variables.$border-primary;
+
+  &__bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-block: variables.$spacing-md;
+  }
+
+  &__logo-text {
+    color: variables.$primary-color-text;
+    font-family: var(--font-inter-tight);
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  &__menu-button {
+    padding-block: 7px;
+    padding-inline: 17px;
+    background-color: transparent;
+    border-radius: 36px;
+    border: variables.$border-primary;
+    font-family: var(--font-inter);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+  }
+
+  &__separator {
+    border-top: variables.$border-primary;
+    margin-top: variables.$spacing-md;
+  }
+
+  &__menu-panel {
+    display: grid;
+    width: calc(100% + (variables.$spacing-md * 2));
+    margin-inline: calc(variables.$spacing-md * -1);
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 800ms ease;
+  }
+
+  &__menu-panel--open {
+    grid-template-rows: 1fr;
+  }
+
+  &__menu-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    margin: 0;
+    padding-block: 0;
+    padding-inline: variables.$spacing-md;
+    font-family: var(--font-inter);
+    color: variables.$primary-color-text;
+    font-size: 14px;
+    letter-spacing: 1.4px;
+    font-weight: 500;
+    gap: 10px;
+    transition:
+      padding-block 800ms ease,
+      visibility 0ms linear 800ms;
+
+    li {
+      opacity: 0;
+      transform: translateY(-6px);
+      transition:
+        opacity 420ms ease,
+        transform 520ms ease;
+    }
+
+    li:nth-child(1) {
+      transition-delay: 280ms;
+    }
+
+    li:nth-child(2) {
+      transition-delay: 240ms;
+    }
+
+    li:nth-child(3) {
+      transition-delay: 200ms;
+    }
+
+    li:nth-child(4) {
+      transition-delay: 160ms;
+    }
+
+    li:nth-child(5) {
+      transition-delay: 120ms;
+    }
+
+    li:nth-child(6) {
+      transition-delay: 80ms;
+    }
+
+    a {
+      transition: color 300ms ease;
+
+      &:hover {
+        color: variables.$secondary-color-text;
+      }
+    }
+
+    .header__contact:hover {
+      background-color: variables.$secondary-color-text;
+      color: variables.$third-color-text;
+    }
+  }
+
+  &__menu-link--active {
+    color: variables.$secondary-color-text;
+  }
+
+  &__contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-block: 7px;
+    padding-inline: 17px;
+    background-color: black;
+    color: variables.$third-color-text;
+    border-radius: variables.$radius-pill;
+  }
+
+  &__menu--open {
+    padding-top: 20px;
+    visibility: visible;
+    transition: padding-block 800ms ease;
+
+    li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    li:nth-child(1) {
+      transition-delay: 0ms;
+    }
+
+    li:nth-child(2) {
+      transition-delay: 100ms;
+    }
+
+    li:nth-child(3) {
+      transition-delay: 200ms;
+    }
+
+    li:nth-child(4) {
+      transition-delay: 300ms;
+    }
+
+    li:nth-child(5) {
+      transition-delay: 400ms;
+    }
+
+    li:nth-child(6) {
+      transition-delay: 500ms;
+    }
+  }
+
+  @include mixins.tablet {
+    &__menu-button {
+      display: none;
+    }
+
+    &__menu-panel {
+      grid-template-rows: 1fr;
+      width: auto;
+    }
+
+    &__separator {
+      display: none;
+    }
+
+    &__menu {
+      visibility: visible;
+      flex-direction: row;
+      align-items: center;
+      padding-block: 0;
+      gap: variables.$spacing-md;
+
+      li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}

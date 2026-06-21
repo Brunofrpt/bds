@@ -1,0 +1,15 @@
+@use "../abstracts/variables" as variables;
+
+.text-with-dot {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.08em;
+
+  &::after {
+    content: "";
+    width: 0.35em;
+    height: 0.35em;
+    border-radius: 50%;
+    background-color: variables.$secondary-color-text;
+  }
+}

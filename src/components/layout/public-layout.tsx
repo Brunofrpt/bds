@@ -1,4 +1,5 @@
 import { Container } from "./container";
+import { Header } from "./header";
 
 type PublicLayoutProps = {
   children: React.ReactNode;
@@ -7,11 +8,7 @@ type PublicLayoutProps = {
 export function PublicLayout({ children }: PublicLayoutProps) {
   return (
     <div className="public-layout">
-      <header className="public-layout__header">
-        <Container>
-          <p>Bruno Da Silva</p>
-        </Container>
-      </header>
+      <Header />
 
       <main className="public-layout__main">
         <Container>{children}</Container>
