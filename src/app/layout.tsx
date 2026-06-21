@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Inter, JetBrains_Mono } from "next/font/google";
 import "@/styles/main.scss";
+import { PublicLayout } from "@/components/layout/public-layout";
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -35,7 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${interTight.variable} ${inter.variable} ${jetBrainsMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <PublicLayout>
+          {children}
+        </PublicLayout>
+      </body>
     </html>
   );
 }
