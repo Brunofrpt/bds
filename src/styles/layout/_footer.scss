@@ -27,7 +27,7 @@
 
   &__links {
     display: flex;
-    gap: 10px;
+    gap: variables.$spacing-sm;
   }
 
   &__link-private {

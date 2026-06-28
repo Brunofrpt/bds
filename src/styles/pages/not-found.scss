@@ -1,0 +1,183 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.not-found__flex-gap {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+}
+
+.not-found-hero {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__second-color {
+    color: variables.$secondary-color-text;
+  }
+
+  &__description {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  &__panel {
+    position: relative;
+    width: min(100%, 420px);
+    margin-inline: auto;
+    min-height: 281px;
+    aspect-ratio: 792 / 632;
+    border-bottom: 1px solid variables.$primary-color-text;
+  }
+
+  &__visual {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__coeur {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  &__grande-plante {
+    position: absolute;
+    top: 186px;
+  }
+
+  &__petite-plante {
+    position: absolute;
+    top: 208px;
+    left: 298px;
+  }
+
+  &__baton {
+    position: absolute;
+    left: 49%;
+    width: 10px;
+    top: 0;
+    bottom: 0;
+    background: #d8d8d8;
+    border: 1px solid variables.$primary-color-text;
+  }
+
+  &__panel-links {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    list-style: none;
+    justify-items: center;
+    gap: 15px;
+    font-family: var(--font-inter);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &__panel-link {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    min-width: 120px;
+    padding-inline: 26px;
+    padding-block: 4px;
+    border: 1px solid variables.$primary-color-text;
+    color: variables.$secondary-color-text;
+    background-color: variables.$third-color-text;
+    text-align: center;
+
+    &--left::before,
+    &--right::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      background-color: inherit;
+      transform: translateY(-50%) rotate(45deg);
+      z-index: -1;
+    }
+
+    &--left::before {
+      left: -12px;
+      border-left: 1px solid variables.$primary-color-text;
+      border-bottom: 1px solid variables.$primary-color-text;
+    }
+
+    &--right::after {
+      right: -12px;
+      border-top: 1px solid variables.$primary-color-text;
+      border-right: 1px solid variables.$primary-color-text;
+    }
+
+    &--accueil {
+      background-color: variables.$secondary-color-text;
+      color: variables.$third-color-text;
+      margin-top: 15px;
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: variables.$spacing-md;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: variables.$spacing-md;
+  }
+
+  &__footer {
+    background-color: variables.$background-color;
+    padding-block: variables.$spacing-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: variables.$spacing-sm;
+  }
+
+  &__footer-span {
+    display: inline-block;
+    font-family: var(--font-inter);
+    font-size: 15px;
+    font-weight: 700;
+    margin-inline: auto;
+  }
+
+  &__footer-link {
+    color: variables.$secondary-color-text;
+    text-decoration: underline;
+
+    &:hover {
+      color: variables.$primary-color-text;
+    }
+  }
+
+  @include mixins.tablet {
+    &__list {
+      flex-direction: row;
+    }
+  }
+}

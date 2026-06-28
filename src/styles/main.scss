@@ -6,6 +6,7 @@
 @use "base/base";
 @use "base/typography";
 
+@use "components/buttons";
 @use "components/text-with-dot";
 
 @use "layout/container";
@@ -13,3 +14,4 @@
 @use "layout/footer";
 
 @use "pages/home";
+@use "pages/not-found.scss";

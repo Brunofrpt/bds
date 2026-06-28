@@ -4,13 +4,13 @@
 
 .header {
   border-bottom: variables.$border-primary;
-
+  margin-bottom: 20px;
   &__bar {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    padding-block: variables.$spacing-md;
+    padding-top: variables.$spacing-md;
   }
 
   &__logo-text {
@@ -34,7 +34,6 @@
 
   &__separator {
     border-top: variables.$border-primary;
-    margin-top: variables.$spacing-md;
   }
 
   &__menu-panel {
@@ -70,7 +69,7 @@
     font-size: 14px;
     letter-spacing: 1.4px;
     font-weight: 500;
-    gap: 10px;
+    gap: variables.$spacing-sm;
     transition:
       padding-block 800ms ease,
       visibility 0ms linear 800ms;
@@ -138,7 +137,7 @@
   }
 
   &__menu--open {
-    padding-top: 20px;
+    padding-block: 20px;
     visibility: visible;
     transition: padding-block 800ms ease;
 
@@ -173,6 +172,10 @@
   }
 
   @include mixins.tablet {
+    &__nav {
+      margin-bottom: variables.$spacing-md;
+    }
+
     &__menu-button {
       display: none;
     }

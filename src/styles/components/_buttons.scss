@@ -1,0 +1,27 @@
+@use "../abstracts/variables";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 23px;
+  padding-block: 13px;
+  border-radius: variables.$radius-pill;
+}
+
+.button--primary {
+  background-color: variables.$secondary-color-text;
+  color: variables.$third-color-text;
+  border: 1px solid variables.$secondary-color-text;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.button--secondary {
+  color: variables.$secondary-color-text;
+  border: 1px solid variables.$secondary-color-text;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  font-weight: 700;
+}
