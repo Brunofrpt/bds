@@ -91,3 +91,64 @@ model ProjectImage {
   @@index([projectId])
   @@index([projectId, displayOrder])
 }
+
+model User {
+  id            String    @id @db.VarChar(191)
+  name          String    @db.VarChar(255)
+  email         String    @unique @db.VarChar(191)
+  emailVerified Boolean   @default(false)
+  image         String?   @db.VarChar(500)
+  createdAt     DateTime  @default(now()) @db.DateTime(3)
+  updatedAt     DateTime  @updatedAt @db.DateTime(3)
+  sessions      Session[]
+  accounts      Account[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @db.VarChar(191)
+  expiresAt DateTime @db.DateTime(3)
+  token     String   @unique @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.DateTime(3)
+  updatedAt DateTime @updatedAt @db.DateTime(3)
+  ipAddress String?  @db.VarChar(255)
+  userAgent String?  @db.Text
+  userId    String   @db.VarChar(191)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @db.VarChar(191)
+  accountId             String    @db.VarChar(255)
+  providerId            String    @db.VarChar(255)
+  userId                String    @db.VarChar(191)
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime? @db.DateTime(3)
+  refreshTokenExpiresAt DateTime? @db.DateTime(3)
+  scope                 String?   @db.Text
+  password              String?   @db.VarChar(255)
+  createdAt             DateTime  @default(now()) @db.DateTime(3)
+  updatedAt             DateTime  @updatedAt @db.DateTime(3)
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @db.VarChar(191)
+  identifier String   @db.VarChar(255)
+  value      String   @db.Text
+  expiresAt  DateTime @db.DateTime(3)
+  createdAt  DateTime @default(now()) @db.DateTime(3)
+  updatedAt  DateTime @updatedAt @db.DateTime(3)
+
+  @@index([identifier])
+  @@map("verification")
+}
