@@ -1,0 +1,43 @@
+@use "../abstracts/variables";
+
+.admin-login {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+    border: variables.$border-primary;
+    border-radius: variables.$radius-card;
+    padding: variables.$spacing-md;
+    margin-block: 175px;
+    width: min(100%, 400px);
+    margin-inline: auto;
+    background-color: variables.$background-color;
+
+    &__page-info {
+        color: variables.$secondary-color-text;
+    }
+
+    &__title {
+        font-size: 30px;
+    }
+    &__description {
+        font-size: 14px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$spacing-md;
+    }
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$spacing-sm;
+    }
+    &__label {
+        font-size: 12;
+    }
+    &__input {
+        border: variables.$border-primary;
+        border-radius: variables.$radius-card;
+        padding: variables.$spacing-sm;
+    }
+}
