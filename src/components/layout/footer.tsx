@@ -24,7 +24,7 @@ export function Footer() {
           <Link href="/politique-de-confidentialite">CONFIDENTIALITÉ</Link>
         </nav>
         <nav className="footer__link-private" aria-label="Administration">
-          <Link href="/admin">ADMIN</Link>
+          <Link href="/admin/dashboard">ADMIN</Link>
         </nav>
       </Container>
       <Container>

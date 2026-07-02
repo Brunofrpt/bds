@@ -9,7 +9,7 @@ export default function LoginPage() {
         </p>
         <h1 className="admin-login__title title">Connexion</h1>
         <p className="admin-login__description paragraphe">
-          Entrez vos identifiants pour accéder à l'administration du site.
+          Entrez vos identifiants pour accéder à l&apos;administration du site.
         </p>
       </header>
       <LoginForm />

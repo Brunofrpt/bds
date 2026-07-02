@@ -8,7 +8,9 @@ async function main() {
   const adminName = process.env.ADMIN_NAME ?? "Admin";
 
   if (!adminEmail || !adminPassword) {
-    throw new Error("ADMIN_EMAIL et ADMIN_PASSWORD doivent être définis dans .env");
+    throw new Error(
+      "ADMIN_EMAIL et ADMIN_PASSWORD doivent être définis dans .env",
+    );
   }
 
   const normalizedEmail = adminEmail.trim().toLowerCase();

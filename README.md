@@ -91,6 +91,8 @@ npm run dev
 npm run build
 npm run lint
 npx prettier . --check
+npx tsc --noEmit
+npx prettier . --write
 npx prisma validate
 npx prisma generate
 ```
