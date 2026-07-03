@@ -1,12 +1,15 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
+import { PrivateLayout } from "@/components/layout/private-layout";
 
-type PrivateLayoutProps = {
+type PrivateRouteLayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function PrivateLayout({ children }: PrivateLayoutProps) {
+export default async function PrivateRouteLayout({
+  children,
+}: PrivateRouteLayoutProps) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -15,5 +18,5 @@ export default async function PrivateLayout({ children }: PrivateLayoutProps) {
     redirect("/admin/login");
   }
 
-  return <>{children}</>;
+  return <PrivateLayout>{children}</PrivateLayout>;
 }

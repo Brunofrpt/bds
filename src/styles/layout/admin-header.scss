@@ -1,12 +1,16 @@
-// Public header styles.
 @use "../abstracts/variables" as variables;
 @use "../abstracts/mixins" as mixins;
 
-.header {
+.admin-header {
   border-bottom: variables.$border-primary;
+  background-color: variables.$background-color;
 
-  // Barre principale du header :
-  // logo + bouton menu en mobile, puis menu horizontal sur tablette/desktop.
+  &__nav {
+    width: 100%;
+  }
+
+  // Barre principale de l'admin :
+  // bouton menu a gauche, bouton logout a droite.
   &__bar {
     display: flex;
     justify-content: space-between;
@@ -15,32 +19,64 @@
     padding-top: variables.$spacing-md;
   }
 
-  &__logo-text {
-    color: variables.$primary-color-text;
-    font-family: var(--font-inter-tight);
-    font-size: 20px;
-    font-weight: 800;
-  }
-
-  &__menu-button {
-    padding-block: 7px;
-    padding-inline: 17px;
+  &__menu-button,
+  &__logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background-color: transparent;
-    border-radius: 36px;
-    border: variables.$border-primary;
     font-family: var(--font-inter);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.2px;
+    color: variables.$primary-color-text;
+    cursor: pointer;
+  }
+
+  &__logout:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &__icon-burger {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: variables.$primary-color-text;
+  }
+
+  &__icon-burger::before,
+  &__icon-burger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: variables.$primary-color-text;
+  }
+
+  &__icon-burger::before {
+    top: -4px;
+  }
+
+  &__icon-burger::after {
+    top: 4px;
+  }
+
+  &__label {
+    font-size: 12px;
+    font-family: var(--font-inter);
+    font-weight: 800;
   }
 
   &__separator {
     border-top: variables.$border-primary;
   }
 
-  // Premier etage du "rideau deroulant".
-  // On anime la hauteur de cette grille pour donner l'impression
-  // que le menu se deploie puis se replie proprement.
+  // Meme logique que le header public :
+  // cette grille joue le role de "rideau deroulant"
+  // en animant la hauteur du panneau du menu admin.
   &__menu-panel {
     display: grid;
     width: calc(100% + (variables.$spacing-md * 2));
@@ -53,16 +89,15 @@
     grid-template-rows: 1fr;
   }
 
-  // Deuxieme etage du rideau :
-  // ce bloc masque le contenu qui depasse pendant l'animation.
+  // Bloc tampon qui masque le contenu pendant le deroulement/repli du rideau.
   &__menu-panel-inner {
     min-height: 0;
     overflow: hidden;
   }
 
-  // Liste reelle des liens.
-  // Les donnees des liens sont dans `header-links.ts`,
-  // ici on ne gere que leur affichage et leur animation.
+  // Liste reelle des liens admin.
+  // Les donnees sont dans `admin-header-links.tsx`,
+  // ici on ne gere que leur presentation et leurs transitions.
   &__menu {
     display: flex;
     flex-direction: column;
@@ -76,9 +111,9 @@
     padding-inline: variables.$spacing-md;
     font-family: var(--font-inter);
     color: variables.$primary-color-text;
-    font-size: 14px;
-    letter-spacing: 1.4px;
-    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    font-weight: 700;
     gap: variables.$spacing-sm;
     transition:
       padding-block 800ms ease,
@@ -93,40 +128,27 @@
     }
 
     li:nth-child(1) {
-      transition-delay: 280ms;
-    }
-
-    li:nth-child(2) {
       transition-delay: 240ms;
     }
 
+    li:nth-child(2) {
+      transition-delay: 180ms;
+    }
+
     li:nth-child(3) {
-      transition-delay: 200ms;
-    }
-
-    li:nth-child(4) {
-      transition-delay: 160ms;
-    }
-
-    li:nth-child(5) {
       transition-delay: 120ms;
     }
 
-    li:nth-child(6) {
-      transition-delay: 80ms;
+    li:nth-child(4) {
+      transition-delay: 60ms;
     }
+  }
 
-    a {
-      transition: color 300ms ease;
+  &__menu-link {
+    transition: color 300ms ease;
 
-      &:hover {
-        color: variables.$secondary-color-text;
-      }
-    }
-
-    .header__contact:hover {
-      background-color: variables.$secondary-color-text;
-      color: variables.$third-color-text;
+    &:hover {
+      color: variables.$secondary-color-text;
     }
   }
 
@@ -134,21 +156,19 @@
     color: variables.$secondary-color-text;
   }
 
-  &__contact {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding-block: 7px;
-    padding-inline: 17px;
-    background-color: black;
-    color: variables.$third-color-text;
-    border-radius: variables.$radius-pill;
+  &__logout-label {
+    font-size: 11px;
+    font-family: var(--font-inter);
+    font-weight: 700;
+    transition: color 300ms ease;
   }
 
-  // Etat ouvert du rideau :
-  // on ajoute l'espace vertical, on rend le menu visible
-  // puis on laisse les liens apparaitre progressivement.
+  &__logout:hover &__logout-label {
+    color: variables.$secondary-color-text;
+  }
+
+  // Etat ouvert du rideau admin :
+  // on rend le menu visible puis les liens apparaissent progressivement.
   &__menu--open {
     padding-block: 20px;
     visibility: visible;
@@ -174,19 +194,11 @@
     li:nth-child(4) {
       transition-delay: 300ms;
     }
-
-    li:nth-child(5) {
-      transition-delay: 400ms;
-    }
-
-    li:nth-child(6) {
-      transition-delay: 500ms;
-    }
   }
 
   @include mixins.tablet {
-    // A partir de tablette, le "rideau" n'est plus utile :
-    // le menu reste ouvert et horizontal.
+    // A partir de tablette, le menu admin reste visible :
+    // on abandonne donc le comportement "rideau deroulant".
     &__nav {
       margin-bottom: variables.$spacing-md;
     }

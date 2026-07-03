@@ -56,6 +56,28 @@ DATABASE_URL="mysql://portfolio_user:your_password@localhost:3306/portfolio_db"
 
 Le fichier `.env.local` contient des informations sensibles et ne doit pas etre versionne.
 
+## MySQL en local
+
+Si MySQL est arrete ou ne repond plus, tu peux verifier son statut puis le relancer :
+
+```bash
+sudo systemctl status mysql
+sudo systemctl start mysql
+sudo systemctl restart mysql
+```
+
+Tu peux ensuite tester la connexion a la base avec l'utilisateur du projet :
+
+```bash
+mysql -h 127.0.0.1 -P 3306 -u portfolio_user -p portfolio_db
+```
+
+Si la connexion fonctionne, tu pourras ensuite relancer le projet avec :
+
+```bash
+npm run dev
+```
+
 ## Prisma
 
 Le projet utilise Prisma pour gerer le schema de base de donnees et generer un client TypeScript.

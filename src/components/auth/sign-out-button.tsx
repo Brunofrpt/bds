@@ -22,9 +22,11 @@ export function SignOutButton() {
       type="button"
       onClick={handleSignOut}
       disabled={isLoading}
-      className="button button--primary"
+      className="admin-header__logout"
     >
-      {isLoading ? "DECONNEXION..." : "SE DECONNECTER"}
+      <span className="admin-header__logout-label">
+        {isLoading ? "DECONNEXION..." : "LOGOUT"}
+      </span>
     </button>
   );
 }
