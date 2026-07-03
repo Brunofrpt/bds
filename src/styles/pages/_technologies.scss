@@ -1,0 +1,39 @@
+@use "../abstracts/variables";
+@use "../components/buttons";
+
+.technologies {
+  padding-top: variables.$spacing-md;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__intro {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__title {
+    font-size: 36px;
+  }
+
+  &__count {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.9px;
+    line-height: 20px;
+  }
+
+  &__new {
+    font-size: 11px;
+    padding-block: 10px;
+    padding-inline: 10px;
+  }
+}

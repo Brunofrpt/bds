@@ -12,8 +12,9 @@
 @use "layout/container";
 @use "layout/header";
 @use "layout/footer";
-@use "layout/admin-header.scss";
+@use "layout/admin-header";
 
 @use "pages/home";
 @use "pages/admin";
-@use "pages/not-found.scss";
+@use "pages/not-found";
+@use "pages/technologies";
