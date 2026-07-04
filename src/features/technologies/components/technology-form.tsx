@@ -2,22 +2,47 @@
 
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createTechnologyAction } from "../actions/create-technology.action";
 
 export default function TechnologyForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const form = event.currentTarget;
+
     setIsLoading(true);
     setErrorMessage("");
+    setSuccessMessage("");
 
-    try {
-      //branchement
-    } finally {
+    const formData = new FormData(form);
+
+    const rawData = {
+      name: String(formData.get("name") ?? ""),
+      slug: String(formData.get("slug") ?? ""),
+      logoUrl: String(formData.get("logoUrl") ?? ""),
+    };
+
+    const result = await createTechnologyAction(rawData);
+
+    if (!result.success) {
+      setErrorMessage(result.message);
       setIsLoading(false);
+      return;
     }
+
+    setSuccessMessage(result.message);
+    form.reset();
+
+    setTimeout(() => {
+      router.push("/admin/technologies");
+      router.refresh();
+    }, 800);
   }
   return (
     <form className="techno-form" onSubmit={handleSubmit}>
@@ -63,6 +88,13 @@ export default function TechnologyForm() {
           {errorMessage}
         </p>
       )}
+
+      {successMessage && (
+        <p className="techno-form__success" role="status">
+          {successMessage}
+        </p>
+      )}
+
       <button
         className="techno-form__validation"
         type="submit"
