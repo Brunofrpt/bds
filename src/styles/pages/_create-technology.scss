@@ -1,0 +1,13 @@
+@use "../abstracts/variables";
+
+.create-technos {
+  padding-top: variables.$spacing-md;
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__title {
+    font-size: 36px;
+  }
+}

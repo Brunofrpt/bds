@@ -31,7 +31,7 @@ export default async function TechnologiesPage() {
               <li key={technos.id}>
                 <p>{technos.name}</p>
                 <p>{technos.slug}</p>
-                <Link href="/admin/technologies/${technos.id}/modifier">
+                <Link href={`/admin/technologies/${technos.id}/modifier`}>
                   modifier
                 </Link>
                 <button>supprimer</button>
