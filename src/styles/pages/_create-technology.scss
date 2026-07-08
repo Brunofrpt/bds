@@ -2,6 +2,13 @@
 
 .create-technos {
   padding-top: variables.$spacing-md;
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+
+  &__header {
+    width: 100%;
+  }
 
   &__page-infos {
     color: variables.$secondary-color-text;

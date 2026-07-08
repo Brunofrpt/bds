@@ -1,7 +1,7 @@
 @use "../abstracts/variables";
 @use "../components/buttons";
 
-.technologies {
+.projets {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,7 +26,7 @@
     gap: 14px;
   }
 
-  &__title {
+  &__page-title {
     font-size: 36px;
   }
 
@@ -44,18 +44,18 @@
     padding-inline: 10px;
   }
 
-  &__schedule {
+  &__list {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 720px;
+    margin-inline: auto;
     border: variables.$border-primary;
     border-radius: variables.$radius-pill;
-    max-width: 720px;
-    width: 100%;
-    margin-inline: auto;
   }
 
-  &__techno {
+  &__item {
     display: flex;
     align-items: center;
     width: 100%;
@@ -63,20 +63,52 @@
     padding-left: 33px;
     padding-right: 20px;
     border-bottom: variables.$border-primary;
+    gap: variables.$spacing-md;
   }
 
-  &__techno:last-child {
+  &__item:last-child {
     border-bottom: none;
   }
 
   &__description {
+    flex: 1 1 auto;
+    min-width: 0;
     margin-right: auto;
+  }
+
+  &__project-title,
+  &__meta,
+  &__slug {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  &__slug {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  &__year {
+    flex: 0 0 auto;
+    font-family: var(--font-jetbrains-mono);
+    font-size: 12px;
+    line-height: 16px;
+    color: variables.$secondary-color-text;
   }
 
   &__actions {
     display: flex;
     align-items: center;
     gap: 32px;
+    flex: 0 0 auto;
   }
 
   &__modifier-button,
