@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { getTechnologies } from "@/features/technologies/queries/get-technologies";
+import DeleteButtonTechnologie from "@/features/technologies/components/delete-button";
 
 export default async function TechnologiesPage() {
   const technologies = await getTechnologies();
   return (
     <>
-      <section className="technologies">
+      <section className="technologies technos">
         <header className="technologies__header">
           <p className="technologies__page-infos link-description">/ TECHNOS</p>
           <div className="technologies__intro">
@@ -30,14 +31,22 @@ export default async function TechnologiesPage() {
             {technologies.map((technos) => (
               <li key={technos.id} className="technologies__techno">
                 <div className="technologies__description">
-                  <p className="technologies__name list-admin-title">{technos.name}</p>
+                  <p className="technologies__name list-admin-title">
+                    {technos.name}
+                  </p>
                   <p className="technologies__slug">{technos.slug}</p>
                 </div>
                 <div className="technologies__actions">
-                  <Link href={`/admin/technologies/${technos.id}/modifier`} className="technologies__modifier-button">
+                  <Link
+                    href={`/admin/technologies/${technos.id}/modifier`}
+                    className="technologies__modifier-button"
+                  >
                     ÉDITER
                   </Link>
-                  <button className="technologies__supprimer-button">Supprimer</button>
+                  <DeleteButtonTechnologie
+                    id={technos.id}
+                    name={technos.name}
+                  />
                 </div>
               </li>
             ))}

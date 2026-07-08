@@ -46,7 +46,7 @@
     align-items: center;
     border: variables.$border-primary;
     border-radius: variables.$radius-pill;
-
+    max-width: 720px;
   }
 
   &__techno {
@@ -83,7 +83,7 @@
   }
 
   &__modifier-button {
-    color: variables.$secondary-color-text
+    color: variables.$secondary-color-text;
   }
 
   &__supprimer-button {

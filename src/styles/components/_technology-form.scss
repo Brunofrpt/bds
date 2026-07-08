@@ -24,6 +24,10 @@
     max-width: 528px;
   }
 
+  &__input:focus {
+    border-color: variables.$secondary-color-text;
+  }
+
   &__buttons {
     display: flex;
     gap: variables.$spacing-md;

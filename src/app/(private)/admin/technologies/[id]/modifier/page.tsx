@@ -18,7 +18,7 @@ export default async function EditTechnologyPage({
   }
 
   return (
-    <section className="create-technos">
+    <section className="create-technos technos">
       <header className="create-technos__header">
         <p className="create-technos__page-infos link-description">
           / MODIFIER TECHNO
