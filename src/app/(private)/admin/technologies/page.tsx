@@ -26,15 +26,19 @@ export default async function TechnologiesPage() {
         {technologies.length === 0 ? (
           <p className="technologies__not">aucune technologie pour le moment</p>
         ) : (
-          <ul>
+          <ul className="technologies__schedule">
             {technologies.map((technos) => (
-              <li key={technos.id}>
-                <p>{technos.name}</p>
-                <p>{technos.slug}</p>
-                <Link href={`/admin/technologies/${technos.id}/modifier`}>
-                  modifier
-                </Link>
-                <button>supprimer</button>
+              <li key={technos.id} className="technologies__techno">
+                <div className="technologies__description">
+                  <p className="technologies__name list-admin-title">{technos.name}</p>
+                  <p className="technologies__slug">{technos.slug}</p>
+                </div>
+                <div className="technologies__actions">
+                  <Link href={`/admin/technologies/${technos.id}/modifier`} className="technologies__modifier-button">
+                    ÉDITER
+                  </Link>
+                  <button className="technologies__supprimer-button">Supprimer</button>
+                </div>
               </li>
             ))}
           </ul>

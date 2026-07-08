@@ -2,7 +2,7 @@ import TechnologyForm from "@/features/technologies/components/technology-form";
 
 export default function createTechnologiesPage() {
   return (
-    <section className="create-technos">
+    <section className="create-technos technos">
       <header className="create-technos__header">
         <p className="create-technos__page-infos link-description">
           / NOUVELLE TECHNO

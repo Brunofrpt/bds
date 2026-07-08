@@ -1,0 +1,31 @@
+@use "../abstracts/variables";
+@use "../components/buttons";
+
+.techno-form {
+  display: flex;
+  flex-direction: column;
+  padding-top: variables.$spacing-md;
+  gap: variables.$spacing-md;
+  max-width: 800px;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-sm;
+    max-width: 550px;
+    width: 100%;
+  }
+
+  &__input {
+    border: variables.$border-primary;
+    border-radius: variables.$radius-card;
+    padding-block: variables.$spacing-sm;
+    padding-inline: variables.$spacing-md;
+    max-width: 528px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: variables.$spacing-md;
+  }
+}

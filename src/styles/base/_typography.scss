@@ -41,3 +41,25 @@ body {
   font-weight: 600;
   letter-spacing: 1.2px;
 }
+
+.label {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  line-height: 16px;
+}
+
+.list-admin-title {
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: -2px;
+}
+
+.list-admin-subtitle {
+  font-family: var(--font-jetbrains-mono);
+  font-size: 11px;
+  line-height: 16.5px;
+}

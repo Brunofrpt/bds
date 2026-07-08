@@ -1,10 +1,10 @@
 "use server";
 
 import { ZodError } from "zod";
-import { createTechnologyService } from "@/features/technologies/actions/create-technology.service";
+import { updateTechnologyService } from "@/features/technologies/actions/update-technology.service";
 import { uploadTechnologyLogoService } from "@/features/technologies/services/upload-technology-logo.service";
 
-export type CreateTechnologyActionResult = {
+export type UpdateTechnologyActionResult = {
   success: boolean;
   message: string;
   fieldErrors?: {
@@ -14,22 +14,25 @@ export type CreateTechnologyActionResult = {
   };
 };
 
-export async function createTechnologyAction(
+export async function updateTechnologyAction(
+  id: string,
+  currentLogoUrl: string | null,
   formData: FormData,
-): Promise<CreateTechnologyActionResult> {
+): Promise<UpdateTechnologyActionResult> {
   try {
     const name = String(formData.get("name") ?? "");
     const slug = String(formData.get("slug") ?? "");
     const logo = formData.get("logo");
 
-    let logoUrl = "";
+    let logoUrl = currentLogoUrl ?? "";
 
     if (logo instanceof File && logo.size > 0) {
       const uploadedLogo = await uploadTechnologyLogoService(logo);
       logoUrl = uploadedLogo.secure_url;
     }
 
-    await createTechnologyService({
+    await updateTechnologyService({
+      id,
       name,
       slug,
       logoUrl,
@@ -37,7 +40,7 @@ export async function createTechnologyAction(
 
     return {
       success: true,
-      message: "La technologie a bien ete creee.",
+      message: "La technologie a bien ete modifiee.",
     };
   } catch (error) {
     if (error instanceof ZodError) {
