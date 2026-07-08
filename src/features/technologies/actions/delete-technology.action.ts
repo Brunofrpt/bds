@@ -1,6 +1,7 @@
 "use server";
 
 import { deleteTechnologyService } from "@/features/technologies/actions/delete-technology.service";
+import { requireAdminSession } from "@/lib/require-admin-session";
 
 export type DeleteTechnologyActionResult = {
   success: boolean;
@@ -11,6 +12,8 @@ export async function deleteTechnologyAction(
   id: string,
 ): Promise<DeleteTechnologyActionResult> {
   try {
+    await requireAdminSession();
+
     const technology = await deleteTechnologyService(id);
 
     return {

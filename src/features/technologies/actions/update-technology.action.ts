@@ -3,6 +3,7 @@
 import { ZodError } from "zod";
 import { updateTechnologyService } from "@/features/technologies/actions/update-technology.service";
 import { uploadTechnologyLogoService } from "@/features/technologies/services/upload-technology-logo.service";
+import { requireAdminSession } from "@/lib/require-admin-session";
 
 export type UpdateTechnologyActionResult = {
   success: boolean;
@@ -20,6 +21,8 @@ export async function updateTechnologyAction(
   formData: FormData,
 ): Promise<UpdateTechnologyActionResult> {
   try {
+    await requireAdminSession();
+
     const name = String(formData.get("name") ?? "");
     const slug = String(formData.get("slug") ?? "");
     const logo = formData.get("logo");
