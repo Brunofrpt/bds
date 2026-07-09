@@ -4,6 +4,8 @@ import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { createProjectAction } from "../actions/create-project.action";
 import { useRouter } from "next/navigation";
+import PreviewHeroImageForm from "./preview-hero-image-form";
+import ProjectGalleryImagesInput from "./project-gallery-images-input";
 import ProjectTechnologiesSelect, {
   type TechnologyOption,
 } from "./project-technologies-select";
@@ -17,6 +19,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [heroPreviewUrl, setHeroPreviewUrl] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,12 +41,26 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
     } else {
       setSuccessMessage(result.message);
       form.reset();
+      setHeroPreviewUrl(null);
 
       setTimeout(() => {
         router.push("/admin/projets");
         router.refresh();
       }, 800);
     }
+  }
+
+  function handleHeroImageChange(event: FormEvent<HTMLInputElement>) {
+    const input = event.currentTarget;
+    const file = input.files?.[0];
+
+    if (!file) {
+      setHeroPreviewUrl(null);
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    setHeroPreviewUrl(previewUrl);
   }
 
   return (
@@ -284,8 +301,10 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="heroImageUrl"
           name="heroImageUrl"
           type="file"
+          onChange={handleHeroImageChange}
           required
         />
+        <PreviewHeroImageForm previewUrl={heroPreviewUrl} />
       </div>
 
       <div className="project-form__field">
@@ -301,6 +320,8 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           required
         />
       </div>
+
+      <ProjectGalleryImagesInput />
 
       <div className="project-form__field project-form__field--checkbox">
         <label className="project-form__label label" htmlFor="isPublished">

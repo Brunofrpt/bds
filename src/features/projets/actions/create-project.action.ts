@@ -3,6 +3,7 @@
 import { ZodError } from "zod";
 import { createProjectService } from "@/features/projets/actions/create-project.service";
 import { uploadProjectHeroImageService } from "@/features/projets/services/upload-project-hero-image.service";
+import { uploadProjectGalleryImagesService } from "@/features/projets/services/upload-project-gallery-images.service";
 import { requireAdminSession } from "@/lib/require-admin-session";
 
 export type CreateProjectActionResult = {
@@ -74,12 +75,59 @@ export async function createProjectAction(
       .getAll("technologyIds")
       .map((value) => String(value).trim())
       .filter(Boolean);
+    const galleryImageFiles = formData
+      .getAll("galleryImages")
+      .filter(
+        (value): value is File => value instanceof File && value.size > 0,
+      );
+    const galleryImageAltTexts = formData
+      .getAll("galleryImageAltTexts")
+      .map((value) => String(value).trim())
+      .filter(Boolean);
+    const galleryImageDisplayOrders = formData
+      .getAll("galleryImageDisplayOrders")
+      .map((value) => Number(value));
 
     let heroImageUrl = "";
 
     if (heroImage instanceof File && heroImage.size > 0) {
       const uploadedHeroImage = await uploadProjectHeroImageService(heroImage);
       heroImageUrl = uploadedHeroImage.secure_url;
+    }
+
+    if (galleryImageAltTexts.length !== galleryImageFiles.length) {
+      throw new Error(
+        "Chaque image de galerie doit avoir un texte alternatif.",
+      );
+    }
+
+    if (galleryImageDisplayOrders.length !== galleryImageFiles.length) {
+      throw new Error("L'ordre des images de galerie est invalide.");
+    }
+
+    let galleryImages:
+      | {
+          imageUrl: string;
+          altText: string;
+          displayOrder: number;
+        }[]
+      | undefined;
+
+    if (galleryImageFiles.length > 0) {
+      const uploadedGalleryImages =
+        await uploadProjectGalleryImagesService(galleryImageFiles);
+
+      if (uploadedGalleryImages.length !== galleryImageFiles.length) {
+        throw new Error(
+          "Une ou plusieurs images de galerie n'ont pas pu etre televersees.",
+        );
+      }
+
+      galleryImages = uploadedGalleryImages.map((image, index) => ({
+        imageUrl: image.secure_url,
+        altText: galleryImageAltTexts[index],
+        displayOrder: galleryImageDisplayOrders[index],
+      }));
     }
 
     await createProjectService({
@@ -106,6 +154,7 @@ export async function createProjectAction(
       heroImageAlt,
       isPublished,
       technologyIds,
+      galleryImages,
     });
 
     return {

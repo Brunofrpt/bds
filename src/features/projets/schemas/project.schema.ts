@@ -73,3 +73,9 @@ export const projectSchema = z.object({
 });
 
 export type ProjectFormValues = z.infer<typeof projectSchema>;
+
+export type ProjectGalleryImageValues = {
+  imageUrl: string;
+  altText: string;
+  displayOrder: number;
+};

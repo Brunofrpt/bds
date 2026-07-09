@@ -1,10 +1,15 @@
 import prisma from "@/lib/prisma";
 import {
   projectSchema,
+  type ProjectGalleryImageValues,
   type ProjectFormValues,
 } from "@/features/projets/schemas/project.schema";
 
-export async function createProjectService(rawData: ProjectFormValues) {
+type CreateProjectServiceInput = ProjectFormValues & {
+  galleryImages?: ProjectGalleryImageValues[];
+};
+
+export async function createProjectService(rawData: CreateProjectServiceInput) {
   const validatedData = projectSchema.parse(rawData);
 
   const existingProjectBySlug = await prisma.project.findUnique({
@@ -48,6 +53,14 @@ export async function createProjectService(rawData: ProjectFormValues) {
             },
           },
         })),
+      },
+      images: {
+        create:
+          rawData.galleryImages?.map((image) => ({
+            imageUrl: image.imageUrl,
+            altText: image.altText,
+            displayOrder: image.displayOrder,
+          })) ?? [],
       },
     },
   });
