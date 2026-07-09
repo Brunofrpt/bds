@@ -1,6 +1,8 @@
 import ProjectForm from "@/features/projets/components/project-form";
+import { getTechnologies } from "@/features/technologies/queries/get-technologies";
 
-export default function CreateProjectsPage() {
+export default async function CreateProjectsPage() {
+  const technologies = await getTechnologies();
   return (
     <section className="create-projects technos">
       <header className="create-projects__header">
@@ -9,7 +11,7 @@ export default function CreateProjectsPage() {
         </p>
         <h1 className="create-projects__title title">Ajouter un projet</h1>
       </header>
-      <ProjectForm />
+      <ProjectForm technologies={technologies} />
     </section>
   );
 }

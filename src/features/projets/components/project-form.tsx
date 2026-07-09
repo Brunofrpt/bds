@@ -4,8 +4,15 @@ import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { createProjectAction } from "../actions/create-project.action";
 import { useRouter } from "next/navigation";
+import ProjectTechnologiesSelect, {
+  type TechnologyOption,
+} from "./project-technologies-select";
 
-export default function ProjectForm() {
+type ProjectFormProps = {
+  technologies: TechnologyOption[];
+};
+
+export default function ProjectForm({ technologies }: ProjectFormProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -168,10 +175,12 @@ export default function ProjectForm() {
           className="project-form__input"
           id="technicalStackDescription"
           name="technicalStackDescription"
-          placeholder="Tapez le nom d'une téchno"
+          placeholder="Exemple: Application développée avec Next.js, Prisma et MySQL, authentification Better Auth."
           required
         />
       </div>
+
+      <ProjectTechnologiesSelect technologies={technologies} />
 
       {/* ---------------- SEO ---------------- */}
       <div className="project-form__field">
