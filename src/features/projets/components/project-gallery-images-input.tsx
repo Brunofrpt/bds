@@ -1,17 +1,43 @@
 "use client";
 
 import { type ChangeEvent, useRef, useState } from "react";
+import type { ProjectInitialData } from "../types/project-initial-data";
 
-type GalleryImageItem = {
+type ExistingGalleryImageItem = {
   id: string;
-  file: File;
   previewUrl: string;
   altText: string;
+  source: "existing";
+  imageUrl: string;
 };
 
-export default function ProjectGalleryImagesInput() {
+type NewGalleryImageItem = {
+  id: string;
+  previewUrl: string;
+  altText: string;
+  source: "new";
+  file: File;
+};
+
+type GalleryImageItem = ExistingGalleryImageItem | NewGalleryImageItem;
+
+type ProjectGalleryImagesInputProps = {
+  initialImages?: ProjectInitialData["images"];
+};
+
+export default function ProjectGalleryImagesInput({
+  initialImages = [],
+}: ProjectGalleryImagesInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [galleryImages, setGalleryImages] = useState<GalleryImageItem[]>([]);
+  const [galleryImages, setGalleryImages] = useState<GalleryImageItem[]>(
+    initialImages.map((image) => ({
+      id: image.id,
+      previewUrl: image.imageUrl,
+      altText: image.altText,
+      source: "existing",
+      imageUrl: image.imageUrl,
+    })),
+  );
 
   function syncInputFiles(files: File[]) {
     if (!inputRef.current) {
@@ -27,6 +53,12 @@ export default function ProjectGalleryImagesInput() {
     inputRef.current.files = dataTransfer.files;
   }
 
+  function getNewFiles(images: GalleryImageItem[]) {
+    return images
+      .filter((image): image is NewGalleryImageItem => image.source === "new")
+      .map((image) => image.file);
+  }
+
   function handleGalleryImagesChange(event: ChangeEvent<HTMLInputElement>) {
     const selectedFiles = Array.from(event.currentTarget.files ?? []);
 
@@ -37,13 +69,14 @@ export default function ProjectGalleryImagesInput() {
     setGalleryImages((currentImages) => {
       const newImages = selectedFiles.map((file) => ({
         id: crypto.randomUUID(),
-        file,
         previewUrl: URL.createObjectURL(file),
         altText: "",
+        source: "new" as const,
+        file,
       }));
 
       const nextImages = [...currentImages, ...newImages];
-      syncInputFiles(nextImages.map((image) => image.file));
+      syncInputFiles(getNewFiles(nextImages));
 
       return nextImages;
     });
@@ -54,11 +87,13 @@ export default function ProjectGalleryImagesInput() {
       const imageToRemove = currentImages.find((image) => image.id === imageId);
 
       if (imageToRemove) {
-        URL.revokeObjectURL(imageToRemove.previewUrl);
+        if (imageToRemove.source === "new") {
+          URL.revokeObjectURL(imageToRemove.previewUrl);
+        }
       }
 
       const nextImages = currentImages.filter((image) => image.id !== imageId);
-      syncInputFiles(nextImages.map((image) => image.file));
+      syncInputFiles(getNewFiles(nextImages));
 
       return nextImages;
     });
@@ -110,13 +145,14 @@ export default function ProjectGalleryImagesInput() {
 
               <div className="project-gallery-images-input__meta">
                 <p className="project-gallery-images-input__filename">
-                  {image.file.name}
+                  {image.source === "new"
+                    ? image.file.name
+                    : `Image galerie ${index + 1}`}
                 </p>
 
                 <input
                   className="project-gallery-images-input__alt project-form__input"
                   type="text"
-                  name="galleryImageAltTexts"
                   value={image.altText}
                   onChange={(event) =>
                     handleGalleryImageAltChange(
@@ -128,11 +164,38 @@ export default function ProjectGalleryImagesInput() {
                   required
                 />
 
-                <input
-                  type="hidden"
-                  name="galleryImageDisplayOrders"
-                  value={index}
-                />
+                {image.source === "existing" ? (
+                  <>
+                    <input
+                      type="hidden"
+                      name="existingGalleryImageUrls"
+                      value={image.imageUrl}
+                    />
+                    <input
+                      type="hidden"
+                      name="existingGalleryImageAltTexts"
+                      value={image.altText}
+                    />
+                    <input
+                      type="hidden"
+                      name="existingGalleryImageDisplayOrders"
+                      value={index}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="hidden"
+                      name="galleryImageAltTexts"
+                      value={image.altText}
+                    />
+                    <input
+                      type="hidden"
+                      name="galleryImageDisplayOrders"
+                      value={index}
+                    />
+                  </>
+                )}
 
                 <button
                   type="button"

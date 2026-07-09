@@ -9,15 +9,17 @@ export type TechnologyOption = {
 
 type ProjectTechnologiesSelectProps = {
   technologies: TechnologyOption[];
+  initialSelectedTechnologies?: TechnologyOption[];
 };
 
 export default function ProjectTechnologiesSelect({
   technologies,
+  initialSelectedTechnologies = [],
 }: ProjectTechnologiesSelectProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTechnologies, setSelectedTechnologies] = useState<
     TechnologyOption[]
-  >([]);
+  >(initialSelectedTechnologies);
 
   const hasSearchTerm = searchTerm.trim() !== "";
 

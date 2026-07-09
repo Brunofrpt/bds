@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { createProjectAction } from "../actions/create-project.action";
+import { updateProjectAction } from "../actions/update-project.action";
 import { useRouter } from "next/navigation";
+import type { ProjectInitialData } from "../types/project-initial-data";
 import PreviewHeroImageForm from "./preview-hero-image-form";
 import ProjectGalleryImagesInput from "./project-gallery-images-input";
 import ProjectTechnologiesSelect, {
@@ -12,14 +14,34 @@ import ProjectTechnologiesSelect, {
 
 type ProjectFormProps = {
   technologies: TechnologyOption[];
+  initialData?: ProjectInitialData;
 };
 
-export default function ProjectForm({ technologies }: ProjectFormProps) {
+function formatLinesForTextarea(values: unknown) {
+  if (!Array.isArray(values)) {
+    return "";
+  }
+
+  return values.join("\n");
+}
+
+export default function ProjectForm({
+  technologies,
+  initialData,
+}: ProjectFormProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [heroPreviewUrl, setHeroPreviewUrl] = useState<string | null>(null);
+  const editMode = Boolean(initialData);
+  const buttonText = isLoading
+    ? editMode
+      ? "MODIFICATION EN COURS..."
+      : "CREATION EN COURS..."
+    : editMode
+      ? "MODIFIER LE PROJET"
+      : "CREER LE PROJET";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,8 +53,17 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
     setSuccessMessage("");
 
     const formData = new FormData(form);
+    let result;
 
-    const result = await createProjectAction(formData);
+    if (editMode && initialData) {
+      result = await updateProjectAction(
+        initialData.id,
+        initialData.heroImageUrl,
+        formData,
+      );
+    } else {
+      result = await createProjectAction(formData);
+    }
 
     if (!result.success) {
       setErrorMessage(result.message);
@@ -75,6 +106,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="title"
           name="title"
           type="text"
+          defaultValue={initialData?.title}
           required
         />
       </div>
@@ -88,7 +120,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="year"
           name="year"
           type="number"
-          defaultValue={new Date().getFullYear()}
+          defaultValue={initialData?.year ?? new Date().getFullYear()}
         />
       </div>
 
@@ -101,6 +133,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="slug"
           name="slug"
           type="text"
+          defaultValue={initialData?.slug}
           required
         />
       </div>
@@ -113,6 +146,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           className="project-form__input"
           id="shortDescription"
           name="shortDescription"
+          defaultValue={initialData?.shortDescription}
           required
         />
       </div>
@@ -125,6 +159,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           className="project-form__input"
           id="context"
           name="context"
+          defaultValue={initialData?.context}
           required
         />
       </div>
@@ -139,6 +174,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="objectives"
           name="objectives"
           placeholder="Un objectif par ligne"
+          defaultValue={formatLinesForTextarea(initialData?.objectives)}
           required
         />
       </div>
@@ -152,6 +188,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="developedSkills"
           name="developedSkills"
           placeholder="Une compétence par ligne"
+          defaultValue={formatLinesForTextarea(initialData?.developedSkills)}
           required
         />
       </div>
@@ -165,6 +202,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="results"
           name="results"
           placeholder="Un résultat par ligne"
+          defaultValue={formatLinesForTextarea(initialData?.results)}
           required
         />
       </div>
@@ -178,6 +216,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="improvements"
           name="improvements"
           placeholder="Une amélioration par ligne"
+          defaultValue={formatLinesForTextarea(initialData?.improvements)}
         />
       </div>
 
@@ -193,11 +232,20 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="technicalStackDescription"
           name="technicalStackDescription"
           placeholder="Exemple: Application développée avec Next.js, Prisma et MySQL, authentification Better Auth."
+          defaultValue={initialData?.technicalStackDescription}
           required
         />
       </div>
 
-      <ProjectTechnologiesSelect technologies={technologies} />
+      <ProjectTechnologiesSelect
+        technologies={technologies}
+        initialSelectedTechnologies={
+          initialData?.technologies.map((projectTechnology) => ({
+            id: projectTechnology.technology.id,
+            name: projectTechnology.technology.name,
+          })) ?? []
+        }
+      />
 
       {/* ---------------- SEO ---------------- */}
       <div className="project-form__field">
@@ -210,6 +258,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="seoTitle"
           type="text"
           placeholder="Ex: Tes cours d'espagnol - Site de réservation pour cours d'espagnol"
+          defaultValue={initialData?.seoTitle}
           required
         />
       </div>
@@ -223,6 +272,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="seoDescription"
           name="seoDescription"
           placeholder="Résumé clair du projet pour les moteurs de recherche et les réseaux sociaux"
+          defaultValue={initialData?.seoDescription}
           required
         />
       </div>
@@ -236,6 +286,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="canonicalUrl"
           name="canonicalUrl"
           type="url"
+          defaultValue={initialData?.canonicalUrl ?? ""}
         />
       </div>
 
@@ -249,6 +300,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="ogImageUrl"
           type="url"
           placeholder="URL de l'image pour les réseaux sociaux"
+          defaultValue={initialData?.ogImageUrl ?? ""}
         />
       </div>
 
@@ -263,6 +315,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="githubUrl"
           type="url"
           placeholder="https://..."
+          defaultValue={initialData?.githubUrl ?? ""}
         />
       </div>
 
@@ -276,6 +329,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="demoUrl"
           type="url"
           placeholder="https://..."
+          defaultValue={initialData?.demoUrl ?? ""}
         />
       </div>
 
@@ -288,6 +342,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="videoUrl"
           name="videoUrl"
           type="url"
+          defaultValue={initialData?.videoUrl ?? ""}
         />
       </div>
 
@@ -302,9 +357,11 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="heroImageUrl"
           type="file"
           onChange={handleHeroImageChange}
-          required
+          required={!editMode}
         />
-        <PreviewHeroImageForm previewUrl={heroPreviewUrl} />
+        <PreviewHeroImageForm
+          previewUrl={heroPreviewUrl ?? initialData?.heroImageUrl ?? null}
+        />
       </div>
 
       <div className="project-form__field">
@@ -317,11 +374,12 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           name="heroImageAlt"
           type="text"
           placeholder="Description du hero image"
+          defaultValue={initialData?.heroImageAlt}
           required
         />
       </div>
 
-      <ProjectGalleryImagesInput />
+      <ProjectGalleryImagesInput initialImages={initialData?.images} />
 
       <div className="project-form__field project-form__field--checkbox">
         <label className="project-form__label label" htmlFor="isPublished">
@@ -332,7 +390,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           id="isPublished"
           name="isPublished"
           type="checkbox"
-          defaultChecked={false}
+          defaultChecked={initialData?.isPublished ?? false}
         />
       </div>
       {errorMessage && (
@@ -352,7 +410,7 @@ export default function ProjectForm({ technologies }: ProjectFormProps) {
           type="submit"
           disabled={isLoading}
         >
-          CRÉER LE PROJET
+          {buttonText}
         </button>
         <Link
           className="project-form__annulation button button--secondary"
