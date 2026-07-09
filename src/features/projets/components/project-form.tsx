@@ -1,13 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
+import { createProjectAction } from "../actions/create-project.action";
+import { useRouter } from "next/navigation";
 
 export default function ProjectForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    setIsLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    const formData = new FormData(form);
+
+    const result = await createProjectAction(formData);
+
+    if (!result.success) {
+      setErrorMessage(result.message);
+      setIsLoading(false);
+      return;
+    } else {
+      setSuccessMessage(result.message);
+      form.reset();
+
+      setTimeout(() => {
+        router.push("/admin/projets");
+        router.refresh();
+      }, 800);
+    }
+  }
+
   return (
-    <form className="project-form">
+    <form className="project-form" onSubmit={handleSubmit}>
       {/* ---------------- Informations générales ---------------- */}
       <div className="project-form__field">
         <label className="project-form__label label" htmlFor="title">
@@ -287,6 +320,7 @@ export default function ProjectForm() {
         <button
           className="project-form__validation button button--primary"
           type="submit"
+          disabled={isLoading}
         >
           CRÉER LE PROJET
         </button>
