@@ -14,6 +14,18 @@ export async function updateProjectService(rawData: UpdateProjectServiceInput) {
   const { id, galleryImages, ...projectData } = rawData;
 
   const validatedData = projectSchema.parse(projectData);
+  const currentProject = await prisma.project.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      publishedAt: true,
+    },
+  });
+
+  if (!currentProject) {
+    throw new Error("Le projet a ete introuvable.");
+  }
 
   const existingProjectBySlug = await prisma.project.findFirst({
     where: {
@@ -53,7 +65,9 @@ export async function updateProjectService(rawData: UpdateProjectServiceInput) {
       heroImageUrl: validatedData.heroImageUrl,
       heroImageAlt: validatedData.heroImageAlt,
       isPublished: validatedData.isPublished,
-      publishedAt: validatedData.isPublished ? new Date() : null,
+      publishedAt: validatedData.isPublished
+        ? (currentProject.publishedAt ?? new Date())
+        : currentProject.publishedAt,
       technologies: {
         deleteMany: {},
         create: validatedData.technologyIds.map((technologyId) => ({

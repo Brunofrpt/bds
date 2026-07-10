@@ -38,6 +38,15 @@ export default async function ProjectsPage() {
                     <span className="projets__year">{project.year}</span>
                   )}
                 </p>
+                <p
+                  className={
+                    project.isPublished
+                      ? "projets__status projets__status--published"
+                      : "projets__status projets__status--draft"
+                  }
+                >
+                  {project.isPublished ? "PUBLIÉ" : "BROUILLON"}
+                </p>
               </div>
 
               <div className="projets__actions">

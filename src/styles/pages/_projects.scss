@@ -127,4 +127,19 @@
   &__supprimer-button {
     color: red;
   }
+
+  &__status {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: 4px;
+
+    &--published {
+      color: variables.$primary-color-text;
+    }
+
+    &--draft {
+      color: variables.$secondary-color-text;
+    }
+  }
 }
