@@ -8,9 +8,21 @@ body {
   font-weight: 800;
 }
 
+.title-admin {
+  font-family: var(--font-inter-tight);
+  font-size: 36px;
+  font-weight: 800;
+}
+
 .subtitle {
   font-family: var(--font-inter-tight);
   font-size: 36px;
+}
+
+.subsubtitle-admin {
+  font-family: var(--font-inter-tight);
+  font-size: 24px;
+  font-weight: 800;
 }
 
 .subsubtitle {

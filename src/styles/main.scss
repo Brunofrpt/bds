@@ -11,6 +11,7 @@
 @use "components/text-with-dot";
 @use "components/technos-container";
 @use "components/project-form";
+@use "components/admin-section-card";
 
 @use "layout/container";
 @use "layout/header";
@@ -23,3 +24,4 @@
 @use "pages/technologies";
 @use "pages/create-technology";
 @use "pages/projects";
+@use "pages/_dashboard";

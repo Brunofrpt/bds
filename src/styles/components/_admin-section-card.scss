@@ -1,0 +1,11 @@
+@use "../abstracts/variables";
+
+.admin-section-card {
+  display: flex;
+  flex-direction: column;
+  border: variables.$border-primary;
+  border-radius: variables.$radius-pill;
+  padding: variables.$spacing-md;
+  gap: variables.$spacing-md;
+  background-color: variables.$background-color;
+}

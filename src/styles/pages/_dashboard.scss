@@ -1,0 +1,80 @@
+@use "../abstracts/variables";
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+
+  &__home,
+  &__projets,
+  &__technologies,
+  &__blog {
+    margin-top: variables.$spacing-md;
+  }
+
+  &__projets,
+  &__technologies,
+  &__blog {
+    width: 100%;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  &__projets-header,
+  &__technologies-header,
+  &__blog-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__projets-button,
+  &__technologies-button,
+  &__blog-button {
+    padding-block: 5px;
+  }
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__count {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 20px;
+  }
+
+  &__projets {
+    .projets__list {
+      width: 100%;
+      max-width: none;
+      margin-inline: 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    .projets__item {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .projets__description {
+      min-width: 0;
+    }
+  }
+
+  &__projets-header {
+    justify-content: space-between;
+  }
+
+  &__technologies-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__blog-header {
+    justify-content: space-between;
+  }
+}

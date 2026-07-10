@@ -10,7 +10,7 @@ export default async function TechnologiesPage() {
         <header className="technologies__header">
           <p className="technologies__page-infos link-description">/ TECHNOS</p>
           <div className="technologies__intro">
-            <h1 className="technologies__title title">
+            <h1 className="technologies__title title-admin">
               Technologies
               <span className="technologies__count">
                 ({technologies.length})
