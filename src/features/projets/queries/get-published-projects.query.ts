@@ -15,11 +15,23 @@ export async function getPublishedProjects() {
     ],
     select: {
       id: true,
+      heroImageUrl: true,
+      heroImageAlt: true,
       title: true,
-      slug: true,
       shortDescription: true,
       year: true,
       publishedAt: true,
+      slug: true,
+      technologies: {
+        select: {
+          technology: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      },
     },
   });
 

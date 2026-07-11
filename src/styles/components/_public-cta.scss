@@ -1,0 +1,65 @@
+@use "../abstracts/variables";
+
+.public-cta {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-xd;
+  padding-block: variables.$spacing-xd;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+    padding: 32px 24px;
+    border-radius: 30px;
+    background-color: variables.$primary-color-text;
+    color: variables.$third-color-text;
+  }
+
+  &__title {
+    width: 100%;
+    color: variables.$third-color-text;
+    font-family: var(--font-inter-tight);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.75px;
+    line-height: 36px;
+  }
+
+  &__description {
+    max-width: 24ch;
+    color: variables.$span-color-text;
+  }
+
+  &__button {
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    transition: color 0.25s ease;
+
+    &::before {
+      content: "";
+      width: 48px;
+      height: 1px;
+      background-color: variables.$stroke-color-1;
+      transition:
+        width 0.25s ease,
+        background-color 0.25s ease;
+    }
+
+    &:hover {
+      color: variables.$secondary-color-text;
+    }
+
+    &:hover::before {
+      width: 64px;
+      background-color: variables.$secondary-color-text;
+    }
+  }
+}

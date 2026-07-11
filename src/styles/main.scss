@@ -12,6 +12,7 @@
 @use "components/technos-container";
 @use "components/project-form";
 @use "components/admin-section-card";
+@use "components/public-cta";
 
 @use "layout/container";
 @use "layout/header";
@@ -25,3 +26,4 @@
 @use "pages/create-technology";
 @use "pages/projects";
 @use "pages/_dashboard";
+@use "pages/portfolio";

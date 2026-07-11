@@ -6,6 +6,15 @@ body {
   font-family: var(--font-inter-tight);
   font-size: 42px;
   font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+.title-public {
+  font-family: var(--font-inter-tight);
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 45.6px;
 }
 
 .title-admin {
@@ -27,13 +36,18 @@ body {
 
 .subsubtitle {
   font-family: var(--font-inter-tight);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
 }
 
 .paragraphe {
   font-family: var(--font-inter);
   font-size: 18px;
+}
+
+.paragraphe-public {
+  font-family: var(--font-inter);
+  font-size: 14px;
 }
 
 .description {

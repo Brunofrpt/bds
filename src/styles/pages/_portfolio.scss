@@ -1,0 +1,134 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  margin-top: variables.$spacing-xd;
+  gap: variables.$spacing-md;
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    width: 100%;
+  }
+
+  &__span {
+    color: variables.$span-color-text;
+    font-weight: 500;
+    width: 100%;
+    font-style: italic;
+  }
+
+  &__présentation {
+    margin-top: variables.$spacing-md;
+    width: 100%;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: variables.$spacing-md;
+  }
+
+  &__article {
+    max-width: 619px;
+    &:hover {
+      border: solid 1px variables.$secondary-color-text;
+    }
+  }
+
+  &__image-wraper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: variables.$radius-pill;
+    transition: transform 0.3s ease;
+  }
+
+  &__article:hover &__image {
+    transform: scale(1.04);
+  }
+
+  &__header-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__year {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 12px;
+    color: variables.$secondary-color-text;
+    border-radius: variables.$radius-pill;
+    background-color: variables.$background-color-secondary;
+    padding-inline: 10px;
+    padding-block: 4px;
+  }
+
+  &__button {
+    background-color: variables.$primary-color-text;
+    width: 155px;
+    border: none;
+
+    &:hover {
+      background-color: variables.$secondary-color-text;
+    }
+  }
+
+  &__technologies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: variables.$spacing-sm;
+  }
+
+  &__technology:not(:last-child)::after {
+    content: "•";
+    margin-left: 5px;
+  }
+
+  @include mixins.tablet {
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: variables.$spacing-md;
+
+      align-items: stretch;
+      margin-top: variables.$spacing-md;
+      width: 100%;
+    }
+
+    &__item {
+      height: 100%;
+    }
+
+    &__article {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      max-width: 538px;
+    }
+
+    &__button {
+      margin-top: auto;
+    }
+  }
+}
