@@ -7,7 +7,9 @@ export default function AProposPage() {
   return (
     <>
       <section className="a-propos">
-        <p className="a-propos__page-infos link-description">/ À PROPOS&quot;</p>
+        <p className="a-propos__page-infos link-description">
+          / À PROPOS&quot;
+        </p>
         <header className="a-propos__header">
           <h1 className="a-propos__title title-public">
             Bruno Da Silva developpeur <br />
@@ -189,8 +191,8 @@ export default function AProposPage() {
           <p className="a-propos__promesses-description paragraphe">
             <span className="a-propos__promesses-span">✓</span> moins de
             ressaisie <br />
-            <span className="a-propos__promesses-span">✓</span> moins d&apos;erreurs{" "}
-            <br />
+            <span className="a-propos__promesses-span">✓</span> moins
+            d&apos;erreurs <br />
             <span className="a-propos__promesses-span">✓</span> gain de temps{" "}
             <br />
             <span className="a-propos__promesses-span">✓</span> un quotidien

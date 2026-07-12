@@ -1,0 +1,39 @@
+@use "../abstracts/variables";
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-xd;
+  margin-block: variables.$spacing-xd;
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__span {
+    color: variables.$span-color-text;
+    font-weight: 500;
+    width: 100%;
+    font-style: italic;
+  }
+
+  &__proposition {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+    margin-block: variables.$spacing-xd;
+  }
+
+  &__methodologie {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+    margin-block: variables.$spacing-xd;
+  }
+}
