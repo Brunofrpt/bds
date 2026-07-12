@@ -16,8 +16,8 @@ export default function ServicesList() {
           Automatisation de vos processus
         </h3>
         <p className="services-item-description paragraphe-public">
-          J&apos;automatise vos tâches répétitives pour vous faire gagner du temps et
-          réduire les erreurs
+          J&apos;automatise vos tâches répétitives pour vous faire gagner du
+          temps et réduire les erreurs
         </p>
       </li>
 
@@ -36,8 +36,8 @@ export default function ServicesList() {
           Maintenance & évolution
         </h3>
         <p className="services-item-description paragraphe-public">
-          Je maintiens et fais évoluer vos outils pour qu&apos;ils restent fiables et
-          performants et simple d&apos;utilisation
+          Je maintiens et fais évoluer vos outils pour qu&apos;ils restent
+          fiables et performants et simple d&apos;utilisation
         </p>
       </li>
 

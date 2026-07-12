@@ -1,4 +1,5 @@
 @use "../abstracts/variables";
+@use "../abstracts/mixins";
 
 .public-cta {
   display: flex;
@@ -60,6 +61,65 @@
     &:hover::before {
       width: 64px;
       background-color: variables.$secondary-color-text;
+    }
+  }
+}
+
+@include mixins.tablet {
+  .public-cta {
+    &__card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "title button"
+        "description button";
+      align-items: center;
+      column-gap: 32px;
+      row-gap: 16px;
+      padding: 48px 64px;
+    }
+
+    &__title {
+      grid-area: title;
+      max-width: 12ch;
+      font-size: 36px;
+      line-height: 40px;
+    }
+
+    &__description {
+      grid-area: description;
+      max-width: 34ch;
+    }
+
+    &__button {
+      grid-area: button;
+      width: auto;
+      min-width: 176px;
+      padding-inline: 28px;
+      align-self: center;
+    }
+  }
+}
+
+@include mixins.desktop {
+  .public-cta {
+    &__card {
+      padding: 56px 64px;
+      column-gap: 48px;
+    }
+
+    &__title {
+      max-width: none;
+      font-size: 40px;
+      line-height: 44px;
+    }
+
+    &__description {
+      max-width: 48ch;
+    }
+
+    &__button {
+      min-width: 194px;
     }
   }
 }

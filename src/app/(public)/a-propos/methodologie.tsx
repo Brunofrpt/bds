@@ -35,8 +35,8 @@ export default function Methodologie() {
         <div className="admin-section-card">
           <h3 className="methodologie-item-title subsubtitle">Optimiser</h3>
           <p className="methodologie-item-description paragraphe-public">
-            J&apos;intègre les bonnes pratiques pour des outils rapides, fiables et
-            bien référencées
+            J&apos;intègre les bonnes pratiques pour des outils rapides, fiables
+            et bien référencées
           </p>
         </div>
       </li>
@@ -45,8 +45,8 @@ export default function Methodologie() {
         <div className="admin-section-card">
           <h3 className="methodologie-item-title subsubtitle">Accompagner</h3>
           <p className="methodologie-item-description paragraphe-public">
-            Je reste a vos côtés pour faire évoluer votre outil, l&apos;ajuster et
-            ou l&apos;adapter a vos nouveau besoins.
+            Je reste a vos côtés pour faire évoluer votre outil, l&apos;ajuster
+            et ou l&apos;adapter a vos nouveau besoins.
           </p>
         </div>
       </li>

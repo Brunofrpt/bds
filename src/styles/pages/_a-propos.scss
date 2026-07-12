@@ -1,0 +1,195 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.a-propos {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+  margin-block: variables.$spacing-xd;
+
+  &__page-infos,
+  &__stack-page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__span {
+    color: variables.$span-color-text;
+    font-weight: 500;
+    width: 100%;
+    font-style: italic;
+  }
+
+  &__figure {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__image-wrapper {
+    width: 50%;
+    max-width: 256px;
+    height: auto;
+    aspect-ratio: 1240 / 1650;
+    overflow: hidden;
+    border: variables.$border-primary;
+    border-radius: variables.$radius-pill;
+  }
+
+  &__links-wrapper {
+    display: flex;
+    gap: variables.$spacing-md;
+    margin-bottom: variables.$spacing-md;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-flex;
+    font-size: 12px;
+    font-family: var(--font-inter-tight);
+    font-weight: 700;
+    padding-bottom: 4px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: variables.$secondary-color-text;
+    }
+
+    &:hover {
+      color: variables.$secondary-color-text;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: variables.$radius-pill;
+    transition: transform 0.3s ease;
+  }
+
+  &__stack {
+    color: variables.$third-color-text;
+    background-color: variables.$background-color-third;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-inline: max(20px, calc((100vw - 1300px) / 2 + 20px));
+    padding-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+  }
+
+  &__stack-title {
+    line-height: 1;
+  }
+
+  &__stack-subsubtitle {
+    font-family: var(--font-inter-tight);
+    font-size: 10px;
+    font-weight: 700;
+    color: variables.$secondary-color-text;
+  }
+
+  &__stack-item {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 14px;
+    line-height: 20px;
+    margin-block: variables.$spacing-md;
+
+    &::after {
+      content: "";
+      height: 1px;
+      width: 100%;
+      background-color: variables.$stroke-color-1;
+      display: block;
+      margin-block: variables.$spacing-sm;
+    }
+  }
+
+  &__methodologie {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+    margin-block: variables.$spacing-xd;
+  }
+
+  &__methodologie-page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__promesses {
+    background-color: variables.$background-color;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-inline: max(20px, calc((100vw - 1300px) / 2 + 20px));
+    padding-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__promesses--deux {
+    padding-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  @include mixins.tablet {
+    &__a-propos {
+      gap: variables.$spacing-xd;
+    }
+
+    &__figure {
+      flex-direction: row;
+    }
+
+    &__image-wrapper {
+      flex: 0 0 256px;
+      width: 256px;
+      max-width: 256px;
+    }
+
+    &__a-propos-description {
+      flex: 1;
+    }
+
+    &__stack-grid {
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    &__stack-section {
+      break-inside: avoid;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    &__promesses,
+    &__promesses--deux {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+
+  @include mixins.desktop {
+    &__stack-grid {
+      column-count: 3;
+    }
+  }
+}

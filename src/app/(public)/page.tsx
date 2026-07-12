@@ -55,22 +55,22 @@ export default async function Home() {
           <figcaption className="home__a-propos-description">
             <h2 className="home__a-propos-title subtitle">Bruno Da Silva</h2>
             <p className="home__a-propos-intro paragraphe">
-              Passionné par le web depuis de nombreuses années, j&apos;ai découvert
-              le développement en autodidacte à l&apos;époque du Site du Zéro. Après
-              un parcours riche dans différents secteurs d&apos;activité et plusieurs
-              années à construire et maintenir des projets web personnels, j&apos;ai
-              choisi de transformer cette passion de longue date en métier.
-              Aujourd&apos;hui, je développe des solutions web avec une obsession:
-              vous simplifier la vie...
+              Passionné par le web depuis de nombreuses années, j&apos;ai
+              découvert le développement en autodidacte à l&apos;époque du Site
+              du Zéro. Après un parcours riche dans différents secteurs
+              d&apos;activité et plusieurs années à construire et maintenir des
+              projets web personnels, j&apos;ai choisi de transformer cette
+              passion de longue date en métier. Aujourd&apos;hui, je développe
+              des solutions web avec une obsession: vous simplifier la vie...
             </p>
+            <Link
+              className="home__a-propos-link button button--primary"
+              href="/a-propos"
+            >
+              En savoir plus
+            </Link>
           </figcaption>
         </figure>
-        <Link
-          className="home__a-propos-link button button--primary"
-          href="/a-propos"
-        >
-          En savoir plus
-        </Link>
       </section>
 
       <section className="home__services">
