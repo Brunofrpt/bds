@@ -37,7 +37,6 @@
   &__list {
     display: flex;
     flex-direction: column;
-
     gap: variables.$spacing-md;
   }
 
@@ -48,7 +47,7 @@
     }
   }
 
-  &__image-wraper {
+  &__image-wrapper {
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;

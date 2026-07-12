@@ -1,0 +1,164 @@
+@use "../abstracts/variables";
+
+.projet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: variables.$spacing-md;
+  gap: variables.$spacing-md;
+
+  &__return {
+    color: variables.$secondary-color-text;
+  }
+
+  &__article {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__year {
+    font-family: var(--font-jetbrains-mono);
+    font-size: 12px;
+    color: variables.$secondary-color-text;
+    border-radius: variables.$radius-pill;
+    background-color: variables.$background-color-secondary;
+    padding-inline: 10px;
+    padding-block: 4px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    max-width: 1200px;
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: variables.$radius-pill;
+  }
+
+  &__carousel-controls {
+    position: absolute;
+    inset: auto 16px 16px auto;
+    display: flex;
+    gap: variables.$spacing-sm;
+  }
+
+  &__carousel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: none;
+    background-color: rgb(7 7 7 / 80%);
+    color: variables.$third-color-text;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      background-color: variables.$primary-color-text;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__technologies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: variables.$spacing-sm;
+
+    &::after {
+      content: "";
+      background-color: variables.$stroke-color-1;
+      width: 95%;
+      height: 1px;
+      margin-block: variables.$spacing-xd;
+      margin-inline: auto;
+    }
+  }
+
+  &__technology-button {
+    padding-block: 7px;
+    padding-inline: 17px;
+    background-color: transparent;
+    border-radius: 36px;
+    border: variables.$border-primary;
+    font-family: var(--font-jetbrains-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: variables.$primary-color-text;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__content-block {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+
+    &::after {
+      content: "";
+      background-color: variables.$stroke-color-1;
+      width: 95%;
+      height: 1px;
+      margin-block: variables.$spacing-md;
+      margin-inline: auto;
+    }
+  }
+
+  .projet__objectives,
+  .projet__developed-skills,
+  .projet__results,
+  .projet__improvements {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-sm;
+  }
+
+  &__objectives-item,
+  &__developed-skills-item,
+  &__results-item,
+  &__improvements-item {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    column-gap: 8px;
+    align-items: start;
+  }
+
+  &__objective-icon,
+  &__skill-icon,
+  &__results-icon,
+  &__improvement-icon {
+    color: variables.$secondary-color-text;
+    height: 100%;
+    margin-right: 10px;
+  }
+}

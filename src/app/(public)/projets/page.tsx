@@ -24,7 +24,7 @@ export default async function Portfolio() {
           {projects.map((project) => (
             <li key={project.id} className="portfolio__item">
               <article className="portfolio__article admin-section-card">
-                <figure className="portfolio__image-wraper">
+                <figure className="portfolio__image-wrapper">
                   <Image
                     src={project.heroImageUrl}
                     alt={project.heroImageAlt}
@@ -35,9 +35,9 @@ export default async function Portfolio() {
                   />
                 </figure>
                 <header className="portfolio__header-list">
-                  <h3 className="portfolio__project-title subsubtitle">
+                  <h2 className="portfolio__project-title subsubtitle">
                     {project.title}
-                  </h3>
+                  </h2>
                   <span className="portfolio__year">{project.year}</span>
                 </header>
                 <p className="paragraphe-public">{project.shortDescription}</p>
