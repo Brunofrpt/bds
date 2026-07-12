@@ -1,0 +1,39 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+}
+
+.services-item {
+  padding: 32px;
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.services-item-title {
+  font-size: 20px;
+  color: variables.$secondary-color-text;
+}
+
+.services-item-description {
+  max-width: 34ch;
+}
+
+@include mixins.tablet {
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@include mixins.desktop {
+  .services-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

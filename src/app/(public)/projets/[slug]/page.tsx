@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPublishedProjectBySlug } from "@/features/projets/queries/get-published-project-by-slug.query";
 import Link from "next/link";
 import ProjectCarousel from "@/features/projets/components/project-carousel";
+import PublicCta from "@/components/UI/public-cta";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -187,6 +188,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </section>
         )}
       </article>
+      <PublicCta />
     </section>
   );
 }

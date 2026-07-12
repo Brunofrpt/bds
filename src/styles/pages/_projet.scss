@@ -58,12 +58,14 @@
 
   &__carousel-controls {
     position: absolute;
-    inset: auto 16px 16px auto;
-    display: flex;
-    gap: variables.$spacing-sm;
+    inset: 0;
+    pointer-events: none;
   }
 
   &__carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -74,13 +76,22 @@
     background-color: rgb(7 7 7 / 80%);
     color: variables.$third-color-text;
     cursor: pointer;
+    pointer-events: auto;
     transition:
       background-color 0.2s ease,
-      transform 0.2s ease;
+      opacity 0.2s ease;
 
     &:hover {
       background-color: variables.$primary-color-text;
-      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    &--previous {
+      left: 16px;
+    }
+
+    &--next {
+      right: 16px;
     }
   }
 

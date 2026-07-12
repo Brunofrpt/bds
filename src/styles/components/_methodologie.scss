@@ -1,0 +1,59 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.methodologie-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+  counter-reset: methodologie-step;
+}
+
+.methodologie-item {
+  counter-increment: methodologie-step;
+}
+
+.methodologie-item .admin-section-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.methodologie-item-title {
+  font-size: 20px;
+  color: variables.$secondary-color-text;
+}
+
+.methodologie-item .admin-section-card::before {
+  content: counter(methodologie-step, decimal-leading-zero);
+  color: variables.$secondary-color-text;
+  font-family: var(--font-jetbrains-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+@include mixins.tablet {
+  .methodologie-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .methodologie-item {
+    height: 100%;
+  }
+
+  .methodologie-item .admin-section-card {
+    height: 100%;
+  }
+}
+
+@include mixins.desktop {
+  .methodologie-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}

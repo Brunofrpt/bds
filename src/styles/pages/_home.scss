@@ -1,1 +1,149 @@
-// Home page styles.
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.home {
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+    margin-block: variables.$spacing-xd;
+  }
+
+  &__hero-header {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__hero-span-txt {
+    color: variables.$span-color-text;
+    font-weight: 500;
+    width: 100%;
+    font-style: italic;
+  }
+
+  &__hero-link-cta,
+  &__hero-link-projets {
+    width: fit-content;
+  }
+
+  &__a-propos {
+    background-color: variables.$background-color-third;
+    color: variables.$third-color-text;
+    padding: variables.$spacing-md;
+    border-radius: variables.$radius-pill;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xd;
+    margin-block: variables.$spacing-xd;
+  }
+
+  &__a-propos-figure {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__image-wrapper {
+    width: 50%;
+    max-width: 256px;
+    height: auto;
+    aspect-ratio: 1240 / 1650;
+    overflow: hidden;
+  }
+
+  &__a-propos-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: variables.$radius-pill;
+    transition: transform 0.3s ease;
+  }
+
+  &__a-propos-link {
+    width: fit-content;
+  }
+
+  &__services {
+    margin-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+
+    &::after,
+    &::before {
+      content: "";
+      background-color: variables.$stroke-color-1;
+      width: 100%;
+      height: 1px;
+      margin-block: variables.$spacing-xd;
+      margin-inline: auto;
+      display: block;
+    }
+  }
+
+  &__services-title {
+    margin-bottom: variables.$spacing-xd;
+  }
+
+  &__methodologie {
+    margin-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+
+    &::after {
+      content: "";
+      background-color: variables.$stroke-color-1;
+      width: 100%;
+      height: 1px;
+      margin-block: variables.$spacing-xd;
+      margin-inline: auto;
+      display: block;
+    }
+  }
+
+  &__methodologie-title {
+    margin-bottom: variables.$spacing-xd;
+  }
+
+  &__projets {
+    margin-block: variables.$spacing-xd;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+
+    &::after {
+      content: "";
+      background-color: variables.$stroke-color-1;
+      width: 100%;
+      height: 1px;
+      margin-block: variables.$spacing-xd;
+      margin-inline: auto;
+      display: block;
+    }
+  }
+
+  &__projets-title {
+    margin-bottom: variables.$spacing-xd;
+  }
+
+  @include mixins.tablet {
+    &__a-propos-figure {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+    }
+
+    &__image-wrapper {
+      flex: 0 0 256px;
+      width: 256px;
+      max-width: 256px;
+    }
+
+    &__a-propos-description {
+      flex: 1;
+    }
+  }
+}
