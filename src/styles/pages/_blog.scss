@@ -1,0 +1,75 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.blog {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-xd;
+  margin-block: variables.$spacing-xd;
+
+  &__page-infos {
+    color: variables.$secondary-color-text;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__span {
+    color: variables.$span-color-text;
+    font-weight: 500;
+    width: 100%;
+    font-style: italic;
+  }
+
+  &__introduction {
+    max-width: 36ch;
+  }
+
+  &__coming-soon {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__hero-card,
+  &__topic {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+
+  &__hero-label,
+  &__topic-label {
+    color: variables.$secondary-color-text;
+  }
+
+  &__hero-text,
+  &__topic-text {
+    max-width: 52ch;
+  }
+
+  &__topics {
+    display: grid;
+    gap: variables.$spacing-md;
+    list-style: none;
+  }
+}
+
+@include mixins.tablet {
+  .blog {
+    &__topics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@include mixins.desktop {
+  .blog {
+    &__topics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}

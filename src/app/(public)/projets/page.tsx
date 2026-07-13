@@ -3,6 +3,8 @@ import { getPublishedProjects } from "@/features/projets/queries/get-published-p
 import PublicCta from "@/components/UI/public-cta";
 import PublicProjectsList from "@/features/projets/components/public-projects-list";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Projets | Bruno Da Silva",
   description:

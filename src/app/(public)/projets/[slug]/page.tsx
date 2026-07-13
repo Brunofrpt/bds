@@ -247,3 +247,4 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     </section>
   );
 }
+export const dynamic = "force-dynamic";
