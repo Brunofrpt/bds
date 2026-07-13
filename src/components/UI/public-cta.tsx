@@ -13,7 +13,7 @@ export default function PublicCta({
   title = "Vous avez un projet en tete ?",
   description = "Parlons-en et voyons ensemble comment le concretiser.",
   buttonLabel = "ME CONTACTER",
-  buttonHref = "/contact",
+  buttonHref = "/#contact",
   backLabel = "RETOUR A L'ACCUEIL",
   backHref = "/",
 }: PublicCtaProps) {
