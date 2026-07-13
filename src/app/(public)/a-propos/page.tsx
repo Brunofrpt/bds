@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Methodologie from "./methodologie";
 import PublicCta from "@/components/UI/public-cta";
+
+export const metadata: Metadata = {
+  title: "À propos | Bruno Da Silva",
+  description:
+    "Découvrez le parcours, la méthode et la vision de Bruno Da Silva, concepteur de solutions web utiles, évolutives et pensées pour le quotidien des entreprises.",
+};
 
 export default function AProposPage() {
   return (

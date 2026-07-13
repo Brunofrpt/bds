@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ServicesList from "@/components/UI/services-list";
@@ -5,6 +6,12 @@ import PublicProjectsList from "@/features/projets/components/public-projects-li
 import { getPublishedProjects } from "@/features/projets/queries/get-published-projects.query";
 import Methodologie from "./a-propos/methodologie";
 import ContactSection from "./contact-section";
+
+export const metadata: Metadata = {
+  title: "Bruno Da Silva | Solutions web sur mesure",
+  description:
+    "Des outils web sur mesure pour aider les entreprises à gagner du temps, automatiser leurs tâches et simplifier leur quotidien.",
+};
 
 export default async function Home() {
   const projects = await getPublishedProjects();

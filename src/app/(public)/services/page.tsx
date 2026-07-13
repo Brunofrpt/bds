@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import ServicesList from "@/components/UI/services-list";
 import Methodologie from "../a-propos/methodologie";
 import PublicCta from "@/components/UI/public-cta";
+
+export const metadata: Metadata = {
+  title: "Services | Bruno Da Silva",
+  description:
+    "Développement d’outils sur mesure, automatisation, intégration, maintenance et accompagnement pour créer des solutions web adaptées à votre activité.",
+};
 
 export default function Services() {
   return (

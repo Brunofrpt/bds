@@ -1,14 +1,69 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublishedProjectBySlug } from "@/features/projets/queries/get-published-project-by-slug.query";
 import Link from "next/link";
 import ProjectCarousel from "@/features/projets/components/project-carousel";
 import PublicCta from "@/components/UI/public-cta";
+import { seoConfig } from "@/config/seo.config";
 
 type ProjectPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+function getAbsoluteUrl(url: string) {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+
+  return `${seoConfig.siteUrl}${url.startsWith("/") ? url : `/${url}`}`;
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getPublishedProjectBySlug(slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  const canonicalUrl =
+    project.canonicalUrl || `${seoConfig.siteUrl}/projets/${project.slug}`;
+  const projectUrl = `${seoConfig.siteUrl}/projets/${project.slug}`;
+  const socialImageUrl = getAbsoluteUrl(
+    project.ogImageUrl || project.heroImageUrl,
+  );
+
+  return {
+    title: project.seoTitle,
+    description: project.seoDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: project.seoTitle,
+      description: project.seoDescription,
+      url: projectUrl,
+      type: "article",
+      locale: seoConfig.locale,
+      images: [
+        {
+          url: socialImageUrl,
+          alt: project.heroImageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.seoTitle,
+      description: project.seoDescription,
+      images: [socialImageUrl],
+    },
+  };
+}
 
 function isStringArray(value: unknown): value is string[] {
   return (
