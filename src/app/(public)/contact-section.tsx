@@ -184,6 +184,8 @@ export default function ContactSection() {
         <Link
           className="home__contact-social link-description"
           href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           GITHUB
         </Link>

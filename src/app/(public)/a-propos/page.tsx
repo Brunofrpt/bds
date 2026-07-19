@@ -30,7 +30,7 @@ export default function AProposPage() {
         <figure className="a-propos__figure">
           <div className="a-propos__image-wrapper">
             <Image
-              src="/oim.webp"
+              src="/moi.webp"
               alt="photo de face de Bruno Da Silva"
               width={1240}
               height={1650}

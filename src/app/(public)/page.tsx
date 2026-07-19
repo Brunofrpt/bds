@@ -52,7 +52,7 @@ export default async function Home() {
         <figure className="home__a-propos-figure">
           <div className="home__image-wrapper">
             <Image
-              src="/oim.webp"
+              src="/moi.webp"
               alt="photo de face de Bruno Da Silva"
               width={1240}
               height={1650}
