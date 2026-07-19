@@ -177,7 +177,7 @@ export default function ContactSection() {
       <nav className="home__contact-socials" aria-label="Liens de contact">
         <Link
           className="home__contact-social link-description"
-          href="https://www.linkedin.com"
+          href="https://www.linkedin.com/in/bruno-da-silva-1107a23b5"
         >
           LINKEDIN
         </Link>
