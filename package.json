@@ -10,10 +10,11 @@
     "seed:admin": "tsx scripts/seed-admin.ts"
   },
   "dependencies": {
-    "@better-auth/prisma-adapter": "^1.6.22",
-    "@prisma/adapter-mariadb": "^7.8.0",
-    "@prisma/client": "^7.8.0",
-    "better-auth": "^1.6.22",
+    "@better-auth/core": "^1.6.25",
+    "@better-auth/prisma-adapter": "^1.6.25",
+    "@prisma/adapter-mariadb": "^7.9.0",
+    "@prisma/client": "^7.9.0",
+    "better-auth": "^1.6.25",
     "cloudinary": "^2.10.0",
     "dotenv": "^17.4.2",
     "next": "16.2.12",
