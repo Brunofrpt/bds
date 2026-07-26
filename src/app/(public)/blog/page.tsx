@@ -30,8 +30,8 @@ export default function Blog() {
           </h2>
           <p className="blog__hero-text paragraphe-public">
             Cette section accueillera bientot des retours d&apos;experience, des
-            conseils concrets et des articles pour mieux concevoir, optimiser
-            et faire evoluer un site web.
+            conseils concrets et des articles pour mieux concevoir, optimiser et
+            faire evoluer un site web.
           </p>
         </div>
 

@@ -22,38 +22,45 @@ declare global {
         },
       ) => string;
       reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
     };
   }
 }
 
 export default function ContactSection() {
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
-  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(
-    null,
-  );
+  const [turnstileScriptReadyTick, setTurnstileScriptReadyTick] = useState(0);
   const [fieldErrors, setFieldErrors] = useState<
     Partial<Record<keyof ContactFormValues, string>>
   >({});
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   function resetTurnstileWidget() {
-    if (window.turnstile && turnstileWidgetId) {
-      window.turnstile.reset(turnstileWidgetId);
+    if (window.turnstile && turnstileWidgetIdRef.current) {
+      window.turnstile.reset(turnstileWidgetIdRef.current);
       setTurnstileToken("");
     }
   }
 
-  function renderTurnstileWidget() {
-    if (
-      !turnstileSiteKey ||
-      !window.turnstile ||
-      !turnstileContainerRef.current ||
-      turnstileWidgetId
-    ) {
+  useEffect(() => {
+    if (!turnstileSiteKey) {
+      return;
+    }
+
+    if (!window.turnstile) {
+      return;
+    }
+
+    if (!turnstileContainerRef.current) {
+      return;
+    }
+
+    if (turnstileWidgetIdRef.current) {
       return;
     }
 
@@ -74,12 +81,21 @@ export default function ContactSection() {
       },
     });
 
-    setTurnstileWidgetId(widgetId);
-  }
+    turnstileWidgetIdRef.current = widgetId;
+  }, [turnstileSiteKey, turnstileScriptReadyTick]);
 
   useEffect(() => {
-    renderTurnstileWidget();
-  });
+    return () => {
+      if (window.turnstile && turnstileWidgetIdRef.current) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+
+      if (turnstileContainerRef.current) {
+        turnstileContainerRef.current.innerHTML = "";
+      }
+    };
+  }, []);
 
   function handleFormChange() {
     if (errorMessage) {
@@ -158,7 +174,9 @@ export default function ContactSection() {
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
-          onLoad={renderTurnstileWidget}
+          onLoad={() => {
+            setTurnstileScriptReadyTick((currentTick) => currentTick + 1);
+          }}
         />
       )}
 

@@ -5,7 +5,7 @@ import ServicesList from "@/components/UI/services-list";
 import PublicProjectsList from "@/features/projets/components/public-projects-list";
 import { getPublishedProjects } from "@/features/projets/queries/get-published-projects.query";
 import Methodologie from "./a-propos/methodologie";
-import ContactSection from "./contact-section";
+import ContactSection from "@/features/contact/components/contact-section";
 
 export const metadata: Metadata = {
   title: "Bruno Da Silva | Solutions web sur mesure",
@@ -57,6 +57,7 @@ export default async function Home() {
               width={1240}
               height={1650}
               className="home__a-propos-image"
+              priority
             />
           </div>
           <figcaption className="home__a-propos-description">

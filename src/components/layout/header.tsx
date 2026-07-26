@@ -90,13 +90,13 @@ export function Header() {
 
                 {/* Lien d'ancre garde ici car il ne fait pas partie du fichier de routes. */}
                 <li>
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/#contact"
                     onClick={() => setIsMenuOpen(false)}
                     className="header__contact"
                   >
                     CONTACT
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

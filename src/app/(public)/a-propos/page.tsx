@@ -35,6 +35,7 @@ export default function AProposPage() {
               width={1240}
               height={1650}
               className="a-propos__image"
+              priority
             />
           </div>
           <figcaption className="a-propos__description">

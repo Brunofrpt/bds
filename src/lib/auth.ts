@@ -6,9 +6,7 @@ const betterAuthUrl = process.env.BETTER_AUTH_URL;
 const betterAuthSecret = process.env.BETTER_AUTH_SECRET;
 
 if (!betterAuthUrl) {
-  throw new Error(
-    "La variable d'environnement BETTER_AUTH_URL est manquante.",
-  );
+  throw new Error("La variable d'environnement BETTER_AUTH_URL est manquante.");
 }
 
 if (!betterAuthSecret) {
