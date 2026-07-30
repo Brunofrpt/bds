@@ -16,6 +16,12 @@
   font-family: var(--font-inter);
   font-size: 14px;
   font-weight: 700;
+  transition:
+    transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
 }
 
 .button--secondary {
@@ -24,4 +30,10 @@
   font-family: var(--font-inter);
   font-size: 14px;
   font-weight: 700;
+  transition:
+    transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
 }
