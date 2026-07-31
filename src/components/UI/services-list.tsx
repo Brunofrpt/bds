@@ -26,7 +26,7 @@ export default function ServicesList() {
           Intégration & connectivité
         </h3>
         <p className="services-item-description paragraphe-public">
-          Intégration de vos outils éxistants et synchronisation de vos données
+          Intégration de vos outils existants et synchronisation de vos données
           pour tout centraliser
         </p>
       </li>
@@ -37,7 +37,7 @@ export default function ServicesList() {
         </h3>
         <p className="services-item-description paragraphe-public">
           Je maintiens et fais évoluer vos outils pour qu&apos;ils restent
-          fiables et performants et simple d&apos;utilisation
+          fiables, performants et simples d&apos;utilisation
         </p>
       </li>
 
@@ -46,8 +46,8 @@ export default function ServicesList() {
           Accompagnement & conseils
         </h3>
         <p className="services-item-description paragraphe-public">
-          Analyse de vos besoins et conseils pour créer la solution la plus
-          adaptée à votre activitée et a vos clients.
+          J&apos;analyse vos besoins et vous conseille afin de concevoir la solution
+          la plus adaptée à votre activité et à vos clients.
         </p>
       </li>
     </ul>

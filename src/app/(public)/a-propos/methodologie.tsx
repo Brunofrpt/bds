@@ -23,9 +23,9 @@ export default function Methodologie() {
 
       <li className="methodologie-item">
         <div className="admin-section-card">
-          <h3 className="methodologie-item-title subsubtitle">Developper</h3>
+          <h3 className="methodologie-item-title subsubtitle">Développer</h3>
           <p className="methodologie-item-description paragraphe-public">
-            Je construit votre outil avec un code propre, sécurisé et
+            Je construis votre outil avec un code propre, sécurisé et
             maintenable.
           </p>
         </div>
@@ -35,8 +35,8 @@ export default function Methodologie() {
         <div className="admin-section-card">
           <h3 className="methodologie-item-title subsubtitle">Optimiser</h3>
           <p className="methodologie-item-description paragraphe-public">
-            J&apos;intègre les bonnes pratiques pour des outils rapides, fiables
-            et bien référencées
+            J&apos;intègre les meilleures pratiques afin de garantir des outils
+            rapides, fiables et optimisés pour le référencement.
           </p>
         </div>
       </li>
@@ -45,8 +45,8 @@ export default function Methodologie() {
         <div className="admin-section-card">
           <h3 className="methodologie-item-title subsubtitle">Accompagner</h3>
           <p className="methodologie-item-description paragraphe-public">
-            Je reste a vos côtés pour faire évoluer votre outil, l&apos;ajuster
-            et ou l&apos;adapter a vos nouveau besoins.
+            Je reste à vos côtés pour faire évoluer votre outil, l&apos;ajuster
+            et l&apos;adapter à vos nouveaux besoins.
           </p>
         </div>
       </li>

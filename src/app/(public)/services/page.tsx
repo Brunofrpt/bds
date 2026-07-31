@@ -24,7 +24,7 @@ export default function Services() {
             la vie.
           </h1>
           <p className="services__présentation paragraphe">
-            Je vous accompagne afin de trouver l &apos; application web qui vous
+            Je vous accompagne afin de trouver l&apos;application web qui vous
             facilitera la vie
           </p>
         </header>

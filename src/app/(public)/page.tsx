@@ -29,9 +29,9 @@ export default async function Home() {
             la vie
           </h1>
           <p className="home__hero-description paragraphe">
-            Je conçois des applications et des outils sur mesure pour aider les
-            entreprises à gagner du temps, automatiser vos tâches et organiser
-            vos activités plus facilement.
+            Je conçois des applications et des outils web sur mesure qui
+            permettent aux entreprises de gagner du temps, d&apos;automatiser leurs
+            tâches et de simplifier leur organisation.
           </p>
         </header>
         <Link

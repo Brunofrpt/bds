@@ -14,12 +14,10 @@ export default function AProposPage() {
   return (
     <>
       <section className="a-propos">
-        <p className="a-propos__page-infos link-description">
-          / À PROPOS&quot;
-        </p>
+        <p className="a-propos__page-infos link-description">/ À PROPOS</p>
         <header className="a-propos__header">
           <h1 className="a-propos__title title-public">
-            Bruno Da Silva developpeur <br />
+            Bruno Da Silva développeur <br />
             <span className="a-propos__span title-public">
               de solutions
             </span>{" "}
@@ -61,7 +59,7 @@ export default function AProposPage() {
                 d&apos;activité et plusieurs années à construire et maintenir
                 des projets web personnels, j&apos;ai choisi de transformer
                 cette passion de longue date en métier. Aujourd&apos;hui, je
-                développe des solutions web avec une obsession: vous simplifier
+                développe des solutions web avec une obsession : vous simplifier
                 la vie...
               </p>
             </div>
@@ -75,7 +73,7 @@ export default function AProposPage() {
         </p>
         <header className="a-propos__stack-header">
           <h2 className="a-propos__stack-title subtitle">
-            Les téchnologies que je manie au quotidien
+            Les téchnologies que je maîtrise au quotidien
           </h2>
         </header>
         <div className="a-propos__stack-grid">
@@ -85,10 +83,9 @@ export default function AProposPage() {
               <li className="a-propos__stack-item">HTML</li>
               <li className="a-propos__stack-item">CSS</li>
               <li className="a-propos__stack-item">SCSS</li>
-              <li className="a-propos__stack-item">HTML</li>
-              <li className="a-propos__stack-item">Java Script</li>
+              <li className="a-propos__stack-item">JavaScript</li>
               <li className="a-propos__stack-item">React</li>
-              <li className="a-propos__stack-item">Next.JS</li>
+              <li className="a-propos__stack-item">Next.js</li>
             </ul>
           </section>
           <section className="a-propos__stack-section">
@@ -96,7 +93,7 @@ export default function AProposPage() {
             <ul className="a-propos__stack-list">
               <li className="a-propos__stack-item">Figma</li>
               <li className="a-propos__stack-item">Responsive Design</li>
-              <li className="a-propos__stack-item">Accessibilitée web</li>
+              <li className="a-propos__stack-item">Accessibilité web</li>
             </ul>
           </section>
           <section className="a-propos__stack-section">
@@ -106,7 +103,7 @@ export default function AProposPage() {
                 Joomla (thèmes sur mesure)
               </li>
               <li className="a-propos__stack-item">
-                Word Press (thèmes sur mesure)
+                WordPress (thèmes sur mesure)
               </li>
             </ul>
           </section>
@@ -115,11 +112,11 @@ export default function AProposPage() {
               BASE DE DONNÉES ET AUTH
             </h3>
             <ul className="a-propos__stack-list">
-              <li className="a-propos__stack-item">My SQL</li>
-              <li className="a-propos__stack-item">Mongo DB</li>
-              <li className="a-propos__stack-item">Postgre</li>
+              <li className="a-propos__stack-item">MySQL</li>
+              <li className="a-propos__stack-item">MongoDB</li>
+              <li className="a-propos__stack-item">PostgreSQL</li>
               <li className="a-propos__stack-item">Prisma</li>
-              <li className="a-propos__stack-item">Betther Auth</li>
+              <li className="a-propos__stack-item">Better Auth</li>
               <li className="a-propos__stack-item">
                 Firebase Authentification
               </li>
@@ -164,7 +161,7 @@ export default function AProposPage() {
             Ce qui me distingue
           </h2>
           <p className="a-propod__promesses-description paragraphe">
-            Chaque besoin est différent. Avant de coder, je cherche a comprendre
+            Chaque besoin est différent. Avant de coder, je cherche à comprendre
             votre activité et son fonctionnement. Pourquoi pas même passer une
             journée avec vous au bureau pour réellement voir comment vous aider
             afin de créer un outil réellement utile, simple à utiliser et pensé
@@ -181,7 +178,7 @@ export default function AProposPage() {
           <p className="a-propos__promesses-description paragraphe">
             Pas simplement être jolie.
             <br />
-            Je conçois des application faciles à utiliser, qui éliminent les
+            Je conçois des applications faciles à utiliser, qui éliminent les
             tâches répétitives, simplifient le quotidien des équipes et
             s&apos;intègrent naturellement dans votre façon de travailler.
           </p>
